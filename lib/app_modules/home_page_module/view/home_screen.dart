@@ -4,6 +4,7 @@ import 'package:serene_host_app/app_modules/booking_history_module/view/booking_
 import 'package:serene_host_app/app_modules/home_page_module/widget/booking_reviews_widget.dart';
 import 'package:serene_host_app/app_modules/home_page_module/widget/current_bookings_widget.dart';
 import 'package:serene_host_app/app_modules/home_page_module/widget/profile_widget.dart';
+import 'package:serene_host_app/app_modules/login_module/view/login_screen.dart';
 import 'package:serene_host_app/app_utils/random_generator_functions.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -196,7 +197,14 @@ class _HomeScreenState extends State<HomeScreen> {
                   fontSize: 20,
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LoginScreen(),
+                  ),
+                );
+              },
             ),
           ],
         ),
