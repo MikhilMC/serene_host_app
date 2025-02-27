@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:serene_host_app/app_constants/app_colors.dart';
 import 'package:serene_host_app/app_modules/login_module/view/login_screen.dart';
@@ -23,6 +24,7 @@ class _RegisterPropertyDetailsScreenState
   final TextEditingController _addressController = TextEditingController();
   final TextEditingController _latitudeController = TextEditingController();
   final TextEditingController _longitudeController = TextEditingController();
+  final TextEditingController _placeController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
 
   List<String> selectedAmenities = [];
@@ -34,6 +36,7 @@ class _RegisterPropertyDetailsScreenState
     _addressController.dispose();
     _latitudeController.dispose();
     _longitudeController.dispose();
+    _placeController.dispose();
     _descriptionController.dispose();
     super.dispose();
   }
@@ -119,10 +122,19 @@ class _RegisterPropertyDetailsScreenState
       ),
     );
 
-    setState(() {
-      _latitudeController.text = position.latitude.toString();
-      _longitudeController.text = position.longitude.toString();
-    });
+    List<Placemark> placemarks = await placemarkFromCoordinates(
+      position.latitude,
+      position.longitude,
+    );
+
+    if (placemarks.isNotEmpty) {
+      Placemark place = placemarks[0];
+      setState(() {
+        _latitudeController.text = position.latitude.toString();
+        _longitudeController.text = position.longitude.toString();
+        _placeController.text = place.locality!;
+      });
+    }
   }
 
   @override
@@ -248,6 +260,16 @@ class _RegisterPropertyDetailsScreenState
                         ),
                       ),
                     ],
+                  ),
+                  _gap(context),
+                  NormalTextField(
+                    textEditingController: _placeController,
+                    validatorFunction: (value) {
+                      return null;
+                    },
+                    labelText: 'Place',
+                    hintText: 'Enter your place',
+                    isDisabled: true,
                   ),
                   _gap(context),
                   MultilineTextField(
