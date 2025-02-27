@@ -7,6 +7,7 @@ import 'package:serene_host_app/app_modules/register_personal_information_module
 import 'package:serene_host_app/app_modules/register_property_details_module/view/register_property_details_screen.dart';
 import 'package:serene_host_app/app_utils/app_helper.dart';
 import 'package:serene_host_app/app_widgets/normal_text_field.dart';
+import 'package:serene_host_app/app_widgets/overlay_loader_widget.dart';
 import 'package:serene_host_app/app_widgets/password_text_field.dart';
 
 class RegisterPersonalInformationScreen extends StatefulWidget {
@@ -96,23 +97,31 @@ class _RegisterPersonalInformationScreenState
           PersonalDetailsRegistrationState>(
         listener: (context, state) {
           state.whenOrNull(
+            loading: () {},
             success: (response) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    "Host Personal Details Registration Successfull",
+              if (response.status == "success") {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      "Host Personal Details Registration Successfull",
+                    ),
                   ),
-                ),
-              );
+                );
 
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => RegisterPropertyDetailsScreen(
-                    newHostId: response.id!,
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => RegisterPropertyDetailsScreen(
+                      newHostId: response.data!.id!,
+                    ),
                   ),
-                ),
-              );
+                );
+              } else {
+                AppHelper.showErrorDialogue(
+                  context,
+                  "Host Personal Details Registration Failed",
+                );
+              }
             },
             failure: (errorMessage) => AppHelper.showErrorDialogue(
               context,
@@ -126,142 +135,132 @@ class _RegisterPersonalInformationScreenState
             orElse: () => false,
           );
 
-          return Stack(
-            children: [
-              Form(
-                key: _formKey,
-                child: Center(
-                  child: Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: screenSize.width * 0.05,
-                      vertical: screenSize.height * 0.05,
-                    ),
-                    constraints:
-                        BoxConstraints(maxWidth: screenSize.width * 0.85),
-                    child: SingleChildScrollView(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          _gap(context),
-                          NormalTextField(
-                            textEditingController: _fullNameController,
-                            validatorFunction: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter full name';
-                              }
-                              return null;
-                            },
-                            labelText: 'Full Name',
-                            hintText: 'Enter your full name',
-                            textFieldIcon: Icon(Icons.person),
-                          ),
-                          _gap(context),
-                          NormalTextField(
-                            textEditingController: _emailController,
-                            validatorFunction: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter email';
-                              }
-                              bool emailValid = RegExp(
-                                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                  .hasMatch(value);
-                              if (!emailValid) {
-                                return 'Please enter a valid email';
-                              }
-                              return null;
-                            },
-                            labelText: 'Email',
-                            hintText: 'Enter your email',
-                            textFieldIcon: Icon(Icons.email_outlined),
-                            textInputType: TextInputType.emailAddress,
-                          ),
-                          _gap(context),
-                          NormalTextField(
-                            textEditingController: _phoneNumberController,
-                            validatorFunction: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter phone number';
-                              }
-                              bool phoneValid =
-                                  RegExp(r"^(\+91|\+91\-|0)?[789]\d{9}$")
-                                      .hasMatch(value);
-                              if (!phoneValid) {
-                                return 'Please enter a valid phone number';
-                              }
-                              return null;
-                            },
-                            labelText: 'Phone Number',
-                            hintText: 'Enter your phone number',
-                            textInputType: TextInputType.phone,
-                            textFieldIcon: Icon(Icons.phone),
-                          ),
-                          _gap(context),
-                          PasswordTextField(
-                            passwordController: _passwordController,
-                          ),
-                          _gap(context),
-                          Row(
-                            children: [
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(4),
-                                  ),
-                                  backgroundColor: AppColors.tertiaryColor,
+          return OverlayLoaderWidget(
+            isLoading: isLoading,
+            childWidget: Form(
+              key: _formKey,
+              child: Center(
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: screenSize.width * 0.05,
+                    vertical: screenSize.height * 0.05,
+                  ),
+                  constraints:
+                      BoxConstraints(maxWidth: screenSize.width * 0.85),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _gap(context),
+                        NormalTextField(
+                          textEditingController: _fullNameController,
+                          validatorFunction: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter full name';
+                            }
+                            return null;
+                          },
+                          labelText: 'Full Name',
+                          hintText: 'Enter your full name',
+                          textFieldIcon: Icon(Icons.person),
+                        ),
+                        _gap(context),
+                        NormalTextField(
+                          textEditingController: _emailController,
+                          validatorFunction: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter email';
+                            }
+                            bool emailValid = RegExp(
+                                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                .hasMatch(value);
+                            if (!emailValid) {
+                              return 'Please enter a valid email';
+                            }
+                            return null;
+                          },
+                          labelText: 'Email',
+                          hintText: 'Enter your email',
+                          textFieldIcon: Icon(Icons.email_outlined),
+                          textInputType: TextInputType.emailAddress,
+                        ),
+                        _gap(context),
+                        NormalTextField(
+                          textEditingController: _phoneNumberController,
+                          validatorFunction: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter phone number';
+                            }
+                            bool phoneValid =
+                                RegExp(r"^(\+91|\+91\-|0)?[789]\d{9}$")
+                                    .hasMatch(value);
+                            if (!phoneValid) {
+                              return 'Please enter a valid phone number';
+                            }
+                            return null;
+                          },
+                          labelText: 'Phone Number',
+                          hintText: 'Enter your phone number',
+                          textInputType: TextInputType.phone,
+                          textFieldIcon: Icon(Icons.phone),
+                        ),
+                        _gap(context),
+                        PasswordTextField(
+                          passwordController: _passwordController,
+                        ),
+                        _gap(context),
+                        Row(
+                          children: [
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4),
                                 ),
-                                onPressed: null,
-                                child: const Padding(
-                                  padding: EdgeInsets.all(10.0),
-                                  child: Text(
-                                    'Previous',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.black,
-                                    ),
+                                backgroundColor: AppColors.tertiaryColor,
+                              ),
+                              onPressed: null,
+                              child: const Padding(
+                                padding: EdgeInsets.all(10.0),
+                                child: Text(
+                                  'Previous',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
                                   ),
                                 ),
                               ),
-                              Spacer(),
-                              ElevatedButton(
-                                style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(4),
-                                  ),
-                                  backgroundColor: AppColors.primaryColor,
+                            ),
+                            Spacer(),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4),
                                 ),
-                                onPressed: isLoading ? null : _handleNext,
-                                child: const Padding(
-                                  padding: EdgeInsets.all(10.0),
-                                  child: Text(
-                                    'Next',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                    ),
+                                backgroundColor: AppColors.primaryColor,
+                              ),
+                              onPressed: isLoading ? null : _handleNext,
+                              child: const Padding(
+                                padding: EdgeInsets.all(10.0),
+                                child: Text(
+                                  'Next',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
                                   ),
                                 ),
                               ),
-                            ],
-                          ),
-                        ],
-                      ),
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
                   ),
                 ),
               ),
-
-              // 🔴 Overlay Loading Indicator
-              if (isLoading)
-                Container(
-                  color: Colors.black.withValues(alpha: 0.5),
-                  child: const Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                ),
-            ],
+            ),
           );
         },
       ),

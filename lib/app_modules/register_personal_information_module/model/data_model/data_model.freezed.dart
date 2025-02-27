@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'personal_details_registration_response_model.dart';
+part of 'data_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,14 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-PersonalDetailsRegistrationResponseModel
-    _$PersonalDetailsRegistrationResponseModelFromJson(
-        Map<String, dynamic> json) {
-  return _PersonalDetailsRegistrationResponseModel.fromJson(json);
+DataModel _$DataModelFromJson(Map<String, dynamic> json) {
+  return _DataModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$PersonalDetailsRegistrationResponseModel {
+mixin _$DataModel {
   int? get id => throw _privateConstructorUsedError;
   List<String>? get propertyImages => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
@@ -40,24 +38,20 @@ mixin _$PersonalDetailsRegistrationResponseModel {
   String? get rate => throw _privateConstructorUsedError;
   String? get status => throw _privateConstructorUsedError;
 
-  /// Serializes this PersonalDetailsRegistrationResponseModel to a JSON map.
+  /// Serializes this DataModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of PersonalDetailsRegistrationResponseModel
+  /// Create a copy of DataModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $PersonalDetailsRegistrationResponseModelCopyWith<
-          PersonalDetailsRegistrationResponseModel>
-      get copyWith => throw _privateConstructorUsedError;
+  $DataModelCopyWith<DataModel> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PersonalDetailsRegistrationResponseModelCopyWith<$Res> {
-  factory $PersonalDetailsRegistrationResponseModelCopyWith(
-          PersonalDetailsRegistrationResponseModel value,
-          $Res Function(PersonalDetailsRegistrationResponseModel) then) =
-      _$PersonalDetailsRegistrationResponseModelCopyWithImpl<$Res,
-          PersonalDetailsRegistrationResponseModel>;
+abstract class $DataModelCopyWith<$Res> {
+  factory $DataModelCopyWith(DataModel value, $Res Function(DataModel) then) =
+      _$DataModelCopyWithImpl<$Res, DataModel>;
   @useResult
   $Res call(
       {int? id,
@@ -80,18 +74,16 @@ abstract class $PersonalDetailsRegistrationResponseModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$PersonalDetailsRegistrationResponseModelCopyWithImpl<$Res,
-        $Val extends PersonalDetailsRegistrationResponseModel>
-    implements $PersonalDetailsRegistrationResponseModelCopyWith<$Res> {
-  _$PersonalDetailsRegistrationResponseModelCopyWithImpl(
-      this._value, this._then);
+class _$DataModelCopyWithImpl<$Res, $Val extends DataModel>
+    implements $DataModelCopyWith<$Res> {
+  _$DataModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of PersonalDetailsRegistrationResponseModel
+  /// Create a copy of DataModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -188,12 +180,11 @@ class _$PersonalDetailsRegistrationResponseModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$PersonalDetailsRegistrationResponseModelImplCopyWith<$Res>
-    implements $PersonalDetailsRegistrationResponseModelCopyWith<$Res> {
-  factory _$$PersonalDetailsRegistrationResponseModelImplCopyWith(
-          _$PersonalDetailsRegistrationResponseModelImpl value,
-          $Res Function(_$PersonalDetailsRegistrationResponseModelImpl) then) =
-      __$$PersonalDetailsRegistrationResponseModelImplCopyWithImpl<$Res>;
+abstract class _$$DataModelImplCopyWith<$Res>
+    implements $DataModelCopyWith<$Res> {
+  factory _$$DataModelImplCopyWith(
+          _$DataModelImpl value, $Res Function(_$DataModelImpl) then) =
+      __$$DataModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -217,16 +208,14 @@ abstract class _$$PersonalDetailsRegistrationResponseModelImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$PersonalDetailsRegistrationResponseModelImplCopyWithImpl<$Res>
-    extends _$PersonalDetailsRegistrationResponseModelCopyWithImpl<$Res,
-        _$PersonalDetailsRegistrationResponseModelImpl>
-    implements _$$PersonalDetailsRegistrationResponseModelImplCopyWith<$Res> {
-  __$$PersonalDetailsRegistrationResponseModelImplCopyWithImpl(
-      _$PersonalDetailsRegistrationResponseModelImpl _value,
-      $Res Function(_$PersonalDetailsRegistrationResponseModelImpl) _then)
+class __$$DataModelImplCopyWithImpl<$Res>
+    extends _$DataModelCopyWithImpl<$Res, _$DataModelImpl>
+    implements _$$DataModelImplCopyWith<$Res> {
+  __$$DataModelImplCopyWithImpl(
+      _$DataModelImpl _value, $Res Function(_$DataModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of PersonalDetailsRegistrationResponseModel
+  /// Create a copy of DataModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -249,7 +238,7 @@ class __$$PersonalDetailsRegistrationResponseModelImplCopyWithImpl<$Res>
     Object? rate = freezed,
     Object? status = freezed,
   }) {
-    return _then(_$PersonalDetailsRegistrationResponseModelImpl(
+    return _then(_$DataModelImpl(
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -324,9 +313,8 @@ class __$$PersonalDetailsRegistrationResponseModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$PersonalDetailsRegistrationResponseModelImpl
-    implements _PersonalDetailsRegistrationResponseModel {
-  const _$PersonalDetailsRegistrationResponseModelImpl(
+class _$DataModelImpl implements _DataModel {
+  const _$DataModelImpl(
       {this.id,
       final List<String>? propertyImages,
       this.name,
@@ -346,9 +334,8 @@ class _$PersonalDetailsRegistrationResponseModelImpl
       this.status})
       : _propertyImages = propertyImages;
 
-  factory _$PersonalDetailsRegistrationResponseModelImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$PersonalDetailsRegistrationResponseModelImplFromJson(json);
+  factory _$DataModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$DataModelImplFromJson(json);
 
   @override
   final int? id;
@@ -395,14 +382,14 @@ class _$PersonalDetailsRegistrationResponseModelImpl
 
   @override
   String toString() {
-    return 'PersonalDetailsRegistrationResponseModel(id: $id, propertyImages: $propertyImages, name: $name, email: $email, phoneNumber: $phoneNumber, password: $password, propertyType: $propertyType, address: $address, place: $place, latitude: $latitude, longitude: $longitude, description: $description, amenities: $amenities, profilePicture: $profilePicture, idProof: $idProof, rate: $rate, status: $status)';
+    return 'DataModel(id: $id, propertyImages: $propertyImages, name: $name, email: $email, phoneNumber: $phoneNumber, password: $password, propertyType: $propertyType, address: $address, place: $place, latitude: $latitude, longitude: $longitude, description: $description, amenities: $amenities, profilePicture: $profilePicture, idProof: $idProof, rate: $rate, status: $status)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PersonalDetailsRegistrationResponseModelImpl &&
+            other is _$DataModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             const DeepCollectionEquality()
                 .equals(other._propertyImages, _propertyImages) &&
@@ -453,28 +440,24 @@ class _$PersonalDetailsRegistrationResponseModelImpl
       rate,
       status);
 
-  /// Create a copy of PersonalDetailsRegistrationResponseModel
+  /// Create a copy of DataModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$PersonalDetailsRegistrationResponseModelImplCopyWith<
-          _$PersonalDetailsRegistrationResponseModelImpl>
-      get copyWith =>
-          __$$PersonalDetailsRegistrationResponseModelImplCopyWithImpl<
-              _$PersonalDetailsRegistrationResponseModelImpl>(this, _$identity);
+  _$$DataModelImplCopyWith<_$DataModelImpl> get copyWith =>
+      __$$DataModelImplCopyWithImpl<_$DataModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PersonalDetailsRegistrationResponseModelImplToJson(
+    return _$$DataModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _PersonalDetailsRegistrationResponseModel
-    implements PersonalDetailsRegistrationResponseModel {
-  const factory _PersonalDetailsRegistrationResponseModel(
+abstract class _DataModel implements DataModel {
+  const factory _DataModel(
       {final int? id,
       final List<String>? propertyImages,
       final String? name,
@@ -491,11 +474,10 @@ abstract class _PersonalDetailsRegistrationResponseModel
       final String? profilePicture,
       final String? idProof,
       final String? rate,
-      final String? status}) = _$PersonalDetailsRegistrationResponseModelImpl;
+      final String? status}) = _$DataModelImpl;
 
-  factory _PersonalDetailsRegistrationResponseModel.fromJson(
-          Map<String, dynamic> json) =
-      _$PersonalDetailsRegistrationResponseModelImpl.fromJson;
+  factory _DataModel.fromJson(Map<String, dynamic> json) =
+      _$DataModelImpl.fromJson;
 
   @override
   int? get id;
@@ -532,11 +514,10 @@ abstract class _PersonalDetailsRegistrationResponseModel
   @override
   String? get status;
 
-  /// Create a copy of PersonalDetailsRegistrationResponseModel
+  /// Create a copy of DataModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PersonalDetailsRegistrationResponseModelImplCopyWith<
-          _$PersonalDetailsRegistrationResponseModelImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$DataModelImplCopyWith<_$DataModelImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

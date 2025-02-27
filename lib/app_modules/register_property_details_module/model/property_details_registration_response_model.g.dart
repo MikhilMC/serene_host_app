@@ -1,38 +1,36 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'personal_details_registration_response_model.dart';
+part of 'property_details_registration_response_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$PersonalDetailsRegistrationResponseModelImpl
-    _$$PersonalDetailsRegistrationResponseModelImplFromJson(
+_$PropertyDetailsRegistrationResponseModelImpl
+    _$$PropertyDetailsRegistrationResponseModelImplFromJson(
             Map<String, dynamic> json) =>
-        _$PersonalDetailsRegistrationResponseModelImpl(
+        _$PropertyDetailsRegistrationResponseModelImpl(
           id: (json['id'] as num?)?.toInt(),
-          propertyImages: (json['propertyImages'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList(),
+          propertyImages: json['propertyImages'] as List<dynamic>?,
           name: json['name'] as String?,
           email: json['email'] as String?,
           phoneNumber: json['phoneNumber'] as String?,
           password: json['password'] as String?,
           propertyType: json['propertyType'] as String?,
           address: json['address'] as String?,
-          place: json['place'] as String?,
+          place: json['place'],
           latitude: json['latitude'] as String?,
           longitude: json['longitude'] as String?,
           description: json['description'] as String?,
           amenities: json['amenities'] as String?,
-          profilePicture: json['profilePicture'] as String?,
-          idProof: json['idProof'] as String?,
-          rate: json['rate'] as String?,
+          profilePicture: json['profilePicture'],
+          idProof: json['idProof'],
+          rate: json['rate'],
           status: json['status'] as String?,
         );
 
-Map<String, dynamic> _$$PersonalDetailsRegistrationResponseModelImplToJson(
-        _$PersonalDetailsRegistrationResponseModelImpl instance) =>
+Map<String, dynamic> _$$PropertyDetailsRegistrationResponseModelImplToJson(
+        _$PropertyDetailsRegistrationResponseModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'propertyImages': instance.propertyImages,

@@ -6,7 +6,7 @@ class PersonalDetailsRegistrationState with _$PersonalDetailsRegistrationState {
   const factory PersonalDetailsRegistrationState.loading() =
       _PersonalDetailsRegistrationStateLoading;
   const factory PersonalDetailsRegistrationState.success(
-          PersonalDetailsRegistrationResponseModel response) =
+          PersonalDetailsRegisterResponseModel response) =
       _PersonalDetailsRegistrationSuccess;
   const factory PersonalDetailsRegistrationState.failure(String errorMessage) =
       _PersonalDetailsRegistrationFailure;
