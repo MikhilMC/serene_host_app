@@ -55,6 +55,11 @@ class _RegisterPersonalInformationScreenState
           hostPersonalRegistrationDetails,
         ),
       );
+    } else {
+      AppHelper.showErrorDialogue(
+        context,
+        "You have to enter all the fields",
+      );
     }
   }
 
