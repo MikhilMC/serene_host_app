@@ -108,7 +108,9 @@ class _RegisterPersonalInformationScreenState
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => RegisterPropertyDetailsScreen(),
+                  builder: (context) => RegisterPropertyDetailsScreen(
+                    newHostId: response.id!,
+                  ),
                 ),
               );
             },

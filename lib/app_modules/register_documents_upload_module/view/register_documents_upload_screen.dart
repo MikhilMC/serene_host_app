@@ -1,14 +1,20 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+
 import 'package:serene_host_app/app_constants/app_colors.dart';
 import 'package:serene_host_app/app_modules/login_module/view/login_screen.dart';
 import 'package:serene_host_app/app_modules/register_property_details_module/view/register_property_details_screen.dart';
 import 'package:serene_host_app/app_modules/register_submit_module/view/register_submit_screen.dart';
 
 class RegisterDocumentsUploadScreen extends StatefulWidget {
-  const RegisterDocumentsUploadScreen({super.key});
+  final int newHostId;
+  const RegisterDocumentsUploadScreen({
+    super.key,
+    required this.newHostId,
+  });
 
   @override
   State<RegisterDocumentsUploadScreen> createState() =>
@@ -56,7 +62,9 @@ class _RegisterDocumentsUploadScreenState
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => RegisterPropertyDetailsScreen(),
+        builder: (context) => RegisterPropertyDetailsScreen(
+          newHostId: widget.newHostId,
+        ),
       ),
     );
   }
@@ -66,7 +74,9 @@ class _RegisterDocumentsUploadScreenState
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => RegisterSubmitScreen(),
+        builder: (context) => RegisterSubmitScreen(
+          newHostId: widget.newHostId,
+        ),
       ),
     );
   }

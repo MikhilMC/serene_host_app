@@ -1,6 +1,8 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+
 import 'package:serene_host_app/app_constants/app_colors.dart';
 import 'package:serene_host_app/app_modules/login_module/view/login_screen.dart';
 import 'package:serene_host_app/app_modules/register_documents_upload_module/view/register_documents_upload_screen.dart';
@@ -11,7 +13,11 @@ import 'package:serene_host_app/app_widgets/multiline_text_field.dart';
 import 'package:serene_host_app/app_widgets/normal_text_field.dart';
 
 class RegisterPropertyDetailsScreen extends StatefulWidget {
-  const RegisterPropertyDetailsScreen({super.key});
+  final int newHostId;
+  const RegisterPropertyDetailsScreen({
+    super.key,
+    required this.newHostId,
+  });
 
   @override
   State<RegisterPropertyDetailsScreen> createState() =>
@@ -66,7 +72,9 @@ class _RegisterPropertyDetailsScreenState
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => RegisterDocumentsUploadScreen(),
+          builder: (context) => RegisterDocumentsUploadScreen(
+            newHostId: widget.newHostId,
+          ),
         ),
       );
     }
