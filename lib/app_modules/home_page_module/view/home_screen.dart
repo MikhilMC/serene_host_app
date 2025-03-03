@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:serene_host_app/app_constants/app_colors.dart';
 import 'package:serene_host_app/app_modules/booking_history_module/view/booking_history_screen.dart';
+import 'package:serene_host_app/app_modules/event_module/view/event_screen.dart';
 import 'package:serene_host_app/app_modules/home_page_module/widget/booking_reviews_widget.dart';
 import 'package:serene_host_app/app_modules/home_page_module/widget/current_bookings_widget.dart';
 import 'package:serene_host_app/app_modules/home_page_module/widget/profile_widget.dart';
@@ -180,6 +181,27 @@ class _HomeScreenState extends State<HomeScreen> {
                     builder: (context) => BookingHistoryScreen(
                       bookingHistory: generateRandomBookingHistory(15),
                     ),
+                  ),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.event,
+                color: AppColors.primaryColor,
+              ),
+              title: const Text(
+                'Events',
+                style: TextStyle(
+                  color: AppColors.primaryColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => EventScreen(),
                   ),
                 );
               },

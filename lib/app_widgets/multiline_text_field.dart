@@ -25,6 +25,7 @@ class MultilineTextField extends StatelessWidget {
         labelText: label,
         border: OutlineInputBorder(),
       ),
+      validator: validatorFunction,
     );
   }
 }
