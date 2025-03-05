@@ -6,16 +6,17 @@ import 'dart:convert';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'data_model.freezed.dart';
-part 'data_model.g.dart';
+part 'host_data_model.freezed.dart';
+part 'host_data_model.g.dart';
 
-DataModel dataModelFromJson(String str) => DataModel.fromJson(json.decode(str));
+HostDataModel hostDataModelFromJson(String str) =>
+    HostDataModel.fromJson(json.decode(str));
 
-String dataModelToJson(DataModel data) => json.encode(data.toJson());
+String hostDataModelToJson(HostDataModel data) => json.encode(data.toJson());
 
 @freezed
-class DataModel with _$DataModel {
-  const factory DataModel({
+class HostDataModel with _$HostDataModel {
+  const factory HostDataModel({
     int? id,
     List<String>? propertyImages,
     String? name,
@@ -33,8 +34,8 @@ class DataModel with _$DataModel {
     String? idProof,
     String? rate,
     String? status,
-  }) = _DataModel;
+  }) = _HostDataModel;
 
-  factory DataModel.fromJson(Map<String, dynamic> json) =>
-      _$DataModelFromJson(json);
+  factory HostDataModel.fromJson(Map<String, dynamic> json) =>
+      _$HostDataModelFromJson(json);
 }

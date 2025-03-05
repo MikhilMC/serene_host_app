@@ -3,11 +3,10 @@ import 'dart:io';
 
 import 'package:http/http.dart' as http;
 import 'package:serene_host_app/app_constants/app_urls.dart';
+import 'package:serene_host_app/app_models/register_response_model/register_response_model.dart';
 import 'package:serene_host_app/app_modules/register_personal_information_module/class/host_personal_registration_details.dart';
 
-import 'package:serene_host_app/app_modules/register_personal_information_module/model/personal_details_register_response_model/personal_details_register_response_model.dart';
-
-Future<PersonalDetailsRegisterResponseModel> registerPersonalDetails({
+Future<RegisterResponseModel> registerPersonalDetails({
   required HostPersonalRegistrationDetails hostPersonalRegistrationDetails,
 }) async {
   try {
@@ -31,7 +30,7 @@ Future<PersonalDetailsRegisterResponseModel> registerPersonalDetails({
     if (resp.statusCode == 200) {
       final dynamic decoded = jsonDecode(resp.body);
 
-      final response = PersonalDetailsRegisterResponseModel.fromJson(decoded);
+      final response = RegisterResponseModel.fromJson(decoded);
 
       return response;
     } else {

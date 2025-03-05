@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'data_model.dart';
+part of 'host_data_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$DataModelImpl _$$DataModelImplFromJson(Map<String, dynamic> json) =>
-    _$DataModelImpl(
+_$HostDataModelImpl _$$HostDataModelImplFromJson(Map<String, dynamic> json) =>
+    _$HostDataModelImpl(
       id: (json['id'] as num?)?.toInt(),
       propertyImages: (json['propertyImages'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -29,7 +29,7 @@ _$DataModelImpl _$$DataModelImplFromJson(Map<String, dynamic> json) =>
       status: json['status'] as String?,
     );
 
-Map<String, dynamic> _$$DataModelImplToJson(_$DataModelImpl instance) =>
+Map<String, dynamic> _$$HostDataModelImplToJson(_$HostDataModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'propertyImages': instance.propertyImages,

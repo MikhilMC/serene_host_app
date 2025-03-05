@@ -373,8 +373,7 @@ mixin _$PersonalDetailsRegistrationState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(PersonalDetailsRegisterResponseModel response)
-        success,
+    required TResult Function(RegisterResponseModel response) success,
     required TResult Function(String errorMessage) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -382,7 +381,7 @@ mixin _$PersonalDetailsRegistrationState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(PersonalDetailsRegisterResponseModel response)? success,
+    TResult? Function(RegisterResponseModel response)? success,
     TResult? Function(String errorMessage)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -390,7 +389,7 @@ mixin _$PersonalDetailsRegistrationState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(PersonalDetailsRegisterResponseModel response)? success,
+    TResult Function(RegisterResponseModel response)? success,
     TResult Function(String errorMessage)? failure,
     required TResult orElse(),
   }) =>
@@ -492,8 +491,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(PersonalDetailsRegisterResponseModel response)
-        success,
+    required TResult Function(RegisterResponseModel response) success,
     required TResult Function(String errorMessage) failure,
   }) {
     return initial();
@@ -504,7 +502,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(PersonalDetailsRegisterResponseModel response)? success,
+    TResult? Function(RegisterResponseModel response)? success,
     TResult? Function(String errorMessage)? failure,
   }) {
     return initial?.call();
@@ -515,7 +513,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(PersonalDetailsRegisterResponseModel response)? success,
+    TResult Function(RegisterResponseModel response)? success,
     TResult Function(String errorMessage)? failure,
     required TResult orElse(),
   }) {
@@ -618,8 +616,7 @@ class _$PersonalDetailsRegistrationStateLoadingImpl
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(PersonalDetailsRegisterResponseModel response)
-        success,
+    required TResult Function(RegisterResponseModel response) success,
     required TResult Function(String errorMessage) failure,
   }) {
     return loading();
@@ -630,7 +627,7 @@ class _$PersonalDetailsRegistrationStateLoadingImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(PersonalDetailsRegisterResponseModel response)? success,
+    TResult? Function(RegisterResponseModel response)? success,
     TResult? Function(String errorMessage)? failure,
   }) {
     return loading?.call();
@@ -641,7 +638,7 @@ class _$PersonalDetailsRegistrationStateLoadingImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(PersonalDetailsRegisterResponseModel response)? success,
+    TResult Function(RegisterResponseModel response)? success,
     TResult Function(String errorMessage)? failure,
     required TResult orElse(),
   }) {
@@ -705,9 +702,9 @@ abstract class _$$PersonalDetailsRegistrationSuccessImplCopyWith<$Res> {
           $Res Function(_$PersonalDetailsRegistrationSuccessImpl) then) =
       __$$PersonalDetailsRegistrationSuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({PersonalDetailsRegisterResponseModel response});
+  $Res call({RegisterResponseModel response});
 
-  $PersonalDetailsRegisterResponseModelCopyWith<$Res> get response;
+  $RegisterResponseModelCopyWith<$Res> get response;
 }
 
 /// @nodoc
@@ -731,7 +728,7 @@ class __$$PersonalDetailsRegistrationSuccessImplCopyWithImpl<$Res>
       null == response
           ? _value.response
           : response // ignore: cast_nullable_to_non_nullable
-              as PersonalDetailsRegisterResponseModel,
+              as RegisterResponseModel,
     ));
   }
 
@@ -739,9 +736,8 @@ class __$$PersonalDetailsRegistrationSuccessImplCopyWithImpl<$Res>
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $PersonalDetailsRegisterResponseModelCopyWith<$Res> get response {
-    return $PersonalDetailsRegisterResponseModelCopyWith<$Res>(_value.response,
-        (value) {
+  $RegisterResponseModelCopyWith<$Res> get response {
+    return $RegisterResponseModelCopyWith<$Res>(_value.response, (value) {
       return _then(_value.copyWith(response: value));
     });
   }
@@ -754,7 +750,7 @@ class _$PersonalDetailsRegistrationSuccessImpl
   const _$PersonalDetailsRegistrationSuccessImpl(this.response);
 
   @override
-  final PersonalDetailsRegisterResponseModel response;
+  final RegisterResponseModel response;
 
   @override
   String toString() {
@@ -788,8 +784,7 @@ class _$PersonalDetailsRegistrationSuccessImpl
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(PersonalDetailsRegisterResponseModel response)
-        success,
+    required TResult Function(RegisterResponseModel response) success,
     required TResult Function(String errorMessage) failure,
   }) {
     return success(response);
@@ -800,7 +795,7 @@ class _$PersonalDetailsRegistrationSuccessImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(PersonalDetailsRegisterResponseModel response)? success,
+    TResult? Function(RegisterResponseModel response)? success,
     TResult? Function(String errorMessage)? failure,
   }) {
     return success?.call(response);
@@ -811,7 +806,7 @@ class _$PersonalDetailsRegistrationSuccessImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(PersonalDetailsRegisterResponseModel response)? success,
+    TResult Function(RegisterResponseModel response)? success,
     TResult Function(String errorMessage)? failure,
     required TResult orElse(),
   }) {
@@ -865,10 +860,10 @@ class _$PersonalDetailsRegistrationSuccessImpl
 abstract class _PersonalDetailsRegistrationSuccess
     implements PersonalDetailsRegistrationState {
   const factory _PersonalDetailsRegistrationSuccess(
-          final PersonalDetailsRegisterResponseModel response) =
+          final RegisterResponseModel response) =
       _$PersonalDetailsRegistrationSuccessImpl;
 
-  PersonalDetailsRegisterResponseModel get response;
+  RegisterResponseModel get response;
 
   /// Create a copy of PersonalDetailsRegistrationState
   /// with the given fields replaced by the non-null parameter values.
@@ -955,8 +950,7 @@ class _$PersonalDetailsRegistrationFailureImpl
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(PersonalDetailsRegisterResponseModel response)
-        success,
+    required TResult Function(RegisterResponseModel response) success,
     required TResult Function(String errorMessage) failure,
   }) {
     return failure(errorMessage);
@@ -967,7 +961,7 @@ class _$PersonalDetailsRegistrationFailureImpl
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(PersonalDetailsRegisterResponseModel response)? success,
+    TResult? Function(RegisterResponseModel response)? success,
     TResult? Function(String errorMessage)? failure,
   }) {
     return failure?.call(errorMessage);
@@ -978,7 +972,7 @@ class _$PersonalDetailsRegistrationFailureImpl
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(PersonalDetailsRegisterResponseModel response)? success,
+    TResult Function(RegisterResponseModel response)? success,
     TResult Function(String errorMessage)? failure,
     required TResult orElse(),
   }) {

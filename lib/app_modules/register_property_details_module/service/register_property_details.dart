@@ -4,10 +4,10 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 
 import 'package:serene_host_app/app_constants/app_urls.dart';
+import 'package:serene_host_app/app_models/register_response_model/register_response_model.dart';
 import 'package:serene_host_app/app_modules/register_property_details_module/class/property_registration_details.dart';
-import 'package:serene_host_app/app_modules/register_property_details_module/model/property_details_registration_response_model/property_details_registration_response_model.dart';
 
-Future<PropertyDetailsRegistrationResponseModel> registerPropertyDetails({
+Future<RegisterResponseModel> registerPropertyDetails({
   required int hostId,
   required PropertyRegistrationDetails propertyRegistrationDetails,
 }) async {
@@ -42,8 +42,7 @@ Future<PropertyDetailsRegistrationResponseModel> registerPropertyDetails({
     if (resp.statusCode == 200) {
       final dynamic decoded = jsonDecode(resp.body);
 
-      final response =
-          PropertyDetailsRegistrationResponseModel.fromJson(decoded);
+      final response = RegisterResponseModel.fromJson(decoded);
 
       return response;
     } else {

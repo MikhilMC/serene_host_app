@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'personal_details_register_response_model.dart';
+part of 'register_response_model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,53 +14,50 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-PersonalDetailsRegisterResponseModel
-    _$PersonalDetailsRegisterResponseModelFromJson(Map<String, dynamic> json) {
-  return _PersonalDetailsRegisterResponseModel.fromJson(json);
+RegisterResponseModel _$RegisterResponseModelFromJson(
+    Map<String, dynamic> json) {
+  return _RegisterResponseModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$PersonalDetailsRegisterResponseModel {
+mixin _$RegisterResponseModel {
   String? get status => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
-  DataModel? get data => throw _privateConstructorUsedError;
+  HostDataModel? get data => throw _privateConstructorUsedError;
 
-  /// Serializes this PersonalDetailsRegisterResponseModel to a JSON map.
+  /// Serializes this RegisterResponseModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
-  /// Create a copy of PersonalDetailsRegisterResponseModel
+  /// Create a copy of RegisterResponseModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $PersonalDetailsRegisterResponseModelCopyWith<
-          PersonalDetailsRegisterResponseModel>
-      get copyWith => throw _privateConstructorUsedError;
+  $RegisterResponseModelCopyWith<RegisterResponseModel> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PersonalDetailsRegisterResponseModelCopyWith<$Res> {
-  factory $PersonalDetailsRegisterResponseModelCopyWith(
-          PersonalDetailsRegisterResponseModel value,
-          $Res Function(PersonalDetailsRegisterResponseModel) then) =
-      _$PersonalDetailsRegisterResponseModelCopyWithImpl<$Res,
-          PersonalDetailsRegisterResponseModel>;
+abstract class $RegisterResponseModelCopyWith<$Res> {
+  factory $RegisterResponseModelCopyWith(RegisterResponseModel value,
+          $Res Function(RegisterResponseModel) then) =
+      _$RegisterResponseModelCopyWithImpl<$Res, RegisterResponseModel>;
   @useResult
-  $Res call({String? status, String? message, DataModel? data});
+  $Res call({String? status, String? message, HostDataModel? data});
 
-  $DataModelCopyWith<$Res>? get data;
+  $HostDataModelCopyWith<$Res>? get data;
 }
 
 /// @nodoc
-class _$PersonalDetailsRegisterResponseModelCopyWithImpl<$Res,
-        $Val extends PersonalDetailsRegisterResponseModel>
-    implements $PersonalDetailsRegisterResponseModelCopyWith<$Res> {
-  _$PersonalDetailsRegisterResponseModelCopyWithImpl(this._value, this._then);
+class _$RegisterResponseModelCopyWithImpl<$Res,
+        $Val extends RegisterResponseModel>
+    implements $RegisterResponseModelCopyWith<$Res> {
+  _$RegisterResponseModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of PersonalDetailsRegisterResponseModel
+  /// Create a copy of RegisterResponseModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -81,51 +78,50 @@ class _$PersonalDetailsRegisterResponseModelCopyWithImpl<$Res,
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as DataModel?,
+              as HostDataModel?,
     ) as $Val);
   }
 
-  /// Create a copy of PersonalDetailsRegisterResponseModel
+  /// Create a copy of RegisterResponseModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  $DataModelCopyWith<$Res>? get data {
+  $HostDataModelCopyWith<$Res>? get data {
     if (_value.data == null) {
       return null;
     }
 
-    return $DataModelCopyWith<$Res>(_value.data!, (value) {
+    return $HostDataModelCopyWith<$Res>(_value.data!, (value) {
       return _then(_value.copyWith(data: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$PersonalDetailsRegisterResponseModelImplCopyWith<$Res>
-    implements $PersonalDetailsRegisterResponseModelCopyWith<$Res> {
-  factory _$$PersonalDetailsRegisterResponseModelImplCopyWith(
-          _$PersonalDetailsRegisterResponseModelImpl value,
-          $Res Function(_$PersonalDetailsRegisterResponseModelImpl) then) =
-      __$$PersonalDetailsRegisterResponseModelImplCopyWithImpl<$Res>;
+abstract class _$$RegisterResponseModelImplCopyWith<$Res>
+    implements $RegisterResponseModelCopyWith<$Res> {
+  factory _$$RegisterResponseModelImplCopyWith(
+          _$RegisterResponseModelImpl value,
+          $Res Function(_$RegisterResponseModelImpl) then) =
+      __$$RegisterResponseModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? status, String? message, DataModel? data});
+  $Res call({String? status, String? message, HostDataModel? data});
 
   @override
-  $DataModelCopyWith<$Res>? get data;
+  $HostDataModelCopyWith<$Res>? get data;
 }
 
 /// @nodoc
-class __$$PersonalDetailsRegisterResponseModelImplCopyWithImpl<$Res>
-    extends _$PersonalDetailsRegisterResponseModelCopyWithImpl<$Res,
-        _$PersonalDetailsRegisterResponseModelImpl>
-    implements _$$PersonalDetailsRegisterResponseModelImplCopyWith<$Res> {
-  __$$PersonalDetailsRegisterResponseModelImplCopyWithImpl(
-      _$PersonalDetailsRegisterResponseModelImpl _value,
-      $Res Function(_$PersonalDetailsRegisterResponseModelImpl) _then)
+class __$$RegisterResponseModelImplCopyWithImpl<$Res>
+    extends _$RegisterResponseModelCopyWithImpl<$Res,
+        _$RegisterResponseModelImpl>
+    implements _$$RegisterResponseModelImplCopyWith<$Res> {
+  __$$RegisterResponseModelImplCopyWithImpl(_$RegisterResponseModelImpl _value,
+      $Res Function(_$RegisterResponseModelImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of PersonalDetailsRegisterResponseModel
+  /// Create a copy of RegisterResponseModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
@@ -134,7 +130,7 @@ class __$$PersonalDetailsRegisterResponseModelImplCopyWithImpl<$Res>
     Object? message = freezed,
     Object? data = freezed,
   }) {
-    return _then(_$PersonalDetailsRegisterResponseModelImpl(
+    return _then(_$RegisterResponseModelImpl(
       status: freezed == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
@@ -146,39 +142,36 @@ class __$$PersonalDetailsRegisterResponseModelImplCopyWithImpl<$Res>
       data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as DataModel?,
+              as HostDataModel?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$PersonalDetailsRegisterResponseModelImpl
-    implements _PersonalDetailsRegisterResponseModel {
-  const _$PersonalDetailsRegisterResponseModelImpl(
-      {this.status, this.message, this.data});
+class _$RegisterResponseModelImpl implements _RegisterResponseModel {
+  const _$RegisterResponseModelImpl({this.status, this.message, this.data});
 
-  factory _$PersonalDetailsRegisterResponseModelImpl.fromJson(
-          Map<String, dynamic> json) =>
-      _$$PersonalDetailsRegisterResponseModelImplFromJson(json);
+  factory _$RegisterResponseModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RegisterResponseModelImplFromJson(json);
 
   @override
   final String? status;
   @override
   final String? message;
   @override
-  final DataModel? data;
+  final HostDataModel? data;
 
   @override
   String toString() {
-    return 'PersonalDetailsRegisterResponseModel(status: $status, message: $message, data: $data)';
+    return 'RegisterResponseModel(status: $status, message: $message, data: $data)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$PersonalDetailsRegisterResponseModelImpl &&
+            other is _$RegisterResponseModelImpl &&
             (identical(other.status, status) || other.status == status) &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.data, data) || other.data == data));
@@ -188,47 +181,43 @@ class _$PersonalDetailsRegisterResponseModelImpl
   @override
   int get hashCode => Object.hash(runtimeType, status, message, data);
 
-  /// Create a copy of PersonalDetailsRegisterResponseModel
+  /// Create a copy of RegisterResponseModel
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$PersonalDetailsRegisterResponseModelImplCopyWith<
-          _$PersonalDetailsRegisterResponseModelImpl>
-      get copyWith => __$$PersonalDetailsRegisterResponseModelImplCopyWithImpl<
-          _$PersonalDetailsRegisterResponseModelImpl>(this, _$identity);
+  _$$RegisterResponseModelImplCopyWith<_$RegisterResponseModelImpl>
+      get copyWith => __$$RegisterResponseModelImplCopyWithImpl<
+          _$RegisterResponseModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$PersonalDetailsRegisterResponseModelImplToJson(
+    return _$$RegisterResponseModelImplToJson(
       this,
     );
   }
 }
 
-abstract class _PersonalDetailsRegisterResponseModel
-    implements PersonalDetailsRegisterResponseModel {
-  const factory _PersonalDetailsRegisterResponseModel(
+abstract class _RegisterResponseModel implements RegisterResponseModel {
+  const factory _RegisterResponseModel(
       {final String? status,
       final String? message,
-      final DataModel? data}) = _$PersonalDetailsRegisterResponseModelImpl;
+      final HostDataModel? data}) = _$RegisterResponseModelImpl;
 
-  factory _PersonalDetailsRegisterResponseModel.fromJson(
-          Map<String, dynamic> json) =
-      _$PersonalDetailsRegisterResponseModelImpl.fromJson;
+  factory _RegisterResponseModel.fromJson(Map<String, dynamic> json) =
+      _$RegisterResponseModelImpl.fromJson;
 
   @override
   String? get status;
   @override
   String? get message;
   @override
-  DataModel? get data;
+  HostDataModel? get data;
 
-  /// Create a copy of PersonalDetailsRegisterResponseModel
+  /// Create a copy of RegisterResponseModel
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PersonalDetailsRegisterResponseModelImplCopyWith<
-          _$PersonalDetailsRegisterResponseModelImpl>
+  _$$RegisterResponseModelImplCopyWith<_$RegisterResponseModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
