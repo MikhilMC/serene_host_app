@@ -11,7 +11,7 @@ class AppHelper {
       builder: (context) {
         return AlertDialog(
           title: const Text("Error"),
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.white,
           surfaceTintColor: Colors.green.shade100,
           titleTextStyle: const TextStyle(
             color: Colors.red,
@@ -21,7 +21,7 @@ class AppHelper {
           content: Text(
             message.toUpperCase(),
             style: const TextStyle(
-              color: Colors.white,
+              color: Colors.black,
               fontSize: 15,
             ),
           ),

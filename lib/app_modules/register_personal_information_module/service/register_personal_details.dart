@@ -35,15 +35,18 @@ Future<PersonalDetailsRegisterResponseModel> registerPersonalDetails({
 
       return response;
     } else {
-      throw Exception('Failed to load response');
+      final Map<String, dynamic> errorResponse = jsonDecode(resp.body);
+      throw Exception(
+        'Failed to register: ${errorResponse['message'] ?? 'Unknown error'}',
+      );
     }
   } on SocketException {
-    throw Exception('Failed to load response');
+    throw Exception('No Internet connection');
   } on HttpException {
-    throw Exception('Failed to load response');
+    throw Exception('Server error');
   } on FormatException {
-    throw Exception('Failed to load response');
+    throw Exception('Bad response format');
   } catch (e) {
-    throw Exception('Failed to load response');
+    throw Exception('Unexpected error: ${e.toString()}');
   }
 }

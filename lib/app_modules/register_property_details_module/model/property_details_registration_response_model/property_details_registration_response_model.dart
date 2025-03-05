@@ -2,8 +2,11 @@
 //
 //     final propertyDetailsRegistrationResponseModel = propertyDetailsRegistrationResponseModelFromJson(jsonString);
 
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'dart:convert';
+
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+import 'package:serene_host_app/app_modules/register_property_details_module/model/property_data_model.dart/host_personal_data_model.dart';
 
 part 'property_details_registration_response_model.freezed.dart';
 part 'property_details_registration_response_model.g.dart';
@@ -20,23 +23,9 @@ String propertyDetailsRegistrationResponseModelToJson(
 class PropertyDetailsRegistrationResponseModel
     with _$PropertyDetailsRegistrationResponseModel {
   const factory PropertyDetailsRegistrationResponseModel({
-    int? id,
-    List<dynamic>? propertyImages,
-    String? name,
-    String? email,
-    String? phoneNumber,
-    String? password,
-    String? propertyType,
-    String? address,
-    dynamic place,
-    String? latitude,
-    String? longitude,
-    String? description,
-    String? amenities,
-    dynamic profilePicture,
-    dynamic idProof,
-    dynamic rate,
     String? status,
+    String? message,
+    HostPersonalDataModel? data,
   }) = _PropertyDetailsRegistrationResponseModel;
 
   factory PropertyDetailsRegistrationResponseModel.fromJson(

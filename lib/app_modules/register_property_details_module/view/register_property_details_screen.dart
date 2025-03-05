@@ -1,16 +1,21 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:geocoding/geocoding.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 
 import 'package:serene_host_app/app_constants/app_colors.dart';
 import 'package:serene_host_app/app_modules/login_module/view/login_screen.dart';
 import 'package:serene_host_app/app_modules/register_documents_upload_module/view/register_documents_upload_screen.dart';
 import 'package:serene_host_app/app_modules/register_personal_information_module/view/register_personal_information_screen.dart';
+import 'package:serene_host_app/app_modules/register_property_details_module/bloc/property_details_register_bloc.dart';
+import 'package:serene_host_app/app_modules/register_property_details_module/class/property_registration_details.dart';
+import 'package:serene_host_app/app_modules/register_property_details_module/widget/amneties_list_widget.dart';
 import 'package:serene_host_app/app_modules/register_property_details_module/widget/amneties_selection.dart';
 import 'package:serene_host_app/app_modules/register_property_details_module/widget/property_type_dropdown.dart';
+import 'package:serene_host_app/app_utils/app_helper.dart';
 import 'package:serene_host_app/app_widgets/multiline_text_field.dart';
 import 'package:serene_host_app/app_widgets/normal_text_field.dart';
+import 'package:serene_host_app/app_widgets/overlay_loader_widget.dart';
 
 class RegisterPropertyDetailsScreen extends StatefulWidget {
   final int newHostId;
@@ -33,7 +38,7 @@ class _RegisterPropertyDetailsScreenState
   final TextEditingController _placeController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
 
-  List<String> selectedAmenities = [];
+  final List<String> _selectedAmenities = [];
   String? _selectedPropertyType;
 
   @override
@@ -49,10 +54,10 @@ class _RegisterPropertyDetailsScreenState
 
   void _toggleAmenity(String amenity) {
     setState(() {
-      if (selectedAmenities.contains(amenity)) {
-        selectedAmenities.remove(amenity);
+      if (_selectedAmenities.contains(amenity)) {
+        _selectedAmenities.remove(amenity);
       } else {
-        selectedAmenities.add(amenity);
+        _selectedAmenities.add(amenity);
       }
     });
   }
@@ -69,13 +74,43 @@ class _RegisterPropertyDetailsScreenState
   void _handleNext() {
     FocusScope.of(context).unfocus();
     if (_formKey.currentState!.validate()) {
-      Navigator.pushReplacement(
+      if (_selectedAmenities.isNotEmpty) {
+        if (_selectedPropertyType != null) {
+          PropertyRegistrationDetails propertyRegistrationDetails =
+              PropertyRegistrationDetails(
+            propertyType: _selectedPropertyType!,
+            address: _addressController.text.trim(),
+            latitude: double.parse(_latitudeController.text.trim()),
+            longitude: double.parse(_longitudeController.text.trim()),
+            description: _descriptionController.text.trim(),
+            amenities: _selectedAmenities,
+            place: _placeController.text.trim(),
+          );
+
+          final propertyDetailsRegisterBloc =
+              BlocProvider.of<PropertyDetailsRegisterBloc>(context);
+
+          propertyDetailsRegisterBloc
+              .add(PropertyDetailsRegisterEvent.propertyDetailsRegistered(
+            widget.newHostId,
+            propertyRegistrationDetails,
+          ));
+        } else {
+          AppHelper.showErrorDialogue(
+            context,
+            "Please select property type",
+          );
+        }
+      } else {
+        AppHelper.showErrorDialogue(
+          context,
+          "Please select at least one amenity",
+        );
+      }
+    } else {
+      AppHelper.showErrorDialogue(
         context,
-        MaterialPageRoute(
-          builder: (context) => RegisterDocumentsUploadScreen(
-            newHostId: widget.newHostId,
-          ),
-        ),
+        "You have to enter all the fields",
       );
     }
   }
@@ -89,8 +124,9 @@ class _RegisterPropertyDetailsScreenState
     if (!serviceEnabled) {
       // Location services are not enabled, return
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Location Serices disabled")),
+        AppHelper.showErrorDialogue(
+          context,
+          "Location Services disabled",
         );
       }
 
@@ -104,8 +140,9 @@ class _RegisterPropertyDetailsScreenState
       if (permission == LocationPermission.denied) {
         // Permissions are denied, return
         if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("Location Permission denied")),
+          AppHelper.showErrorDialogue(
+            context,
+            "Location Permission denied",
           );
         }
         return;
@@ -115,8 +152,9 @@ class _RegisterPropertyDetailsScreenState
     if (permission == LocationPermission.deniedForever) {
       // Permissions are permanently denied, return
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Location Permission denied forever")),
+        AppHelper.showErrorDialogue(
+          context,
+          "Location Permission denied forever",
         );
       }
       return;
@@ -130,19 +168,10 @@ class _RegisterPropertyDetailsScreenState
       ),
     );
 
-    List<Placemark> placemarks = await placemarkFromCoordinates(
-      position.latitude,
-      position.longitude,
-    );
-
-    if (placemarks.isNotEmpty) {
-      Placemark place = placemarks[0];
-      setState(() {
-        _latitudeController.text = position.latitude.toString();
-        _longitudeController.text = position.longitude.toString();
-        _placeController.text = place.locality!;
-      });
-    }
+    setState(() {
+      _latitudeController.text = position.latitude.toString();
+      _longitudeController.text = position.longitude.toString();
+    });
   }
 
   @override
@@ -180,195 +209,236 @@ class _RegisterPropertyDetailsScreenState
           ],
         ),
       ),
-      body: Form(
-        key: _formKey,
-        child: Center(
-          child: Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: screenSize.width * 0.05,
-              vertical: screenSize.height * 0.05,
+      body: BlocConsumer<PropertyDetailsRegisterBloc,
+          PropertyDetailsRegisterState>(
+        listener: (context, state) {
+          state.whenOrNull(
+            loading: () {},
+            success: (response) {
+              if (response.status == "success") {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      "Property Details Registration Successfull.",
+                    ),
+                  ),
+                );
+
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => RegisterDocumentsUploadScreen(
+                      newHostId: widget.newHostId,
+                    ),
+                  ),
+                );
+              } else {
+                AppHelper.showErrorDialogue(
+                  context,
+                  "Property Details Registration Failed.",
+                );
+              }
+            },
+            failure: (errorMessage) => AppHelper.showErrorDialogue(
+              context,
+              "Property Details Registration Failed: $errorMessage",
             ),
-            constraints: BoxConstraints(maxWidth: screenSize.width * 0.85),
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _gap(context),
-                  // Property Type Dropdown
-                  PropertyTypeDropdown(
-                    selectedPropertyType: _selectedPropertyType,
-                    onTypeSelected: (String? newType) {
-                      setState(() {
-                        _selectedPropertyType = newType;
-                      });
-                    },
-                  ),
-                  _gap(context),
-                  MultilineTextField(
-                    controller: _addressController,
-                    validatorFunction: (value) {
-                      // add email validation
-                      // if (value == null || value.isEmpty) {
-                      //   return 'Please enter address';
-                      // }
+          );
+        },
+        builder: (context, state) {
+          bool isLoading = state.maybeWhen(
+            loading: () => true,
+            orElse: () => false,
+          );
 
-                      return null;
-                    },
-                    label: 'Address',
-                    hintText: 'Enter your address',
+          return OverlayLoaderWidget(
+            isLoading: isLoading,
+            childWidget: Form(
+              key: _formKey,
+              child: Center(
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: screenSize.width * 0.05,
+                    vertical: screenSize.height * 0.05,
                   ),
-                  _gap(context),
-                  Row(
-                    children: [
-                      SizedBox(
-                        width: screenSize.width * 0.3,
-                        child: NormalTextField(
-                          labelText: 'Latitude',
-                          hintText: 'Latitude',
-                          isDisabled: true,
-                          textEditingController: _latitudeController,
-                          validatorFunction: (_) {
-                            return null;
+                  constraints:
+                      BoxConstraints(maxWidth: screenSize.width * 0.85),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        _gap(context),
+                        // Property Type Dropdown
+                        PropertyTypeDropdown(
+                          selectedPropertyType: _selectedPropertyType,
+                          onTypeSelected: (String? newType) {
+                            setState(() {
+                              _selectedPropertyType = newType;
+                            });
                           },
                         ),
-                      ),
-                      SizedBox(
-                        width: screenSize.width * 0.02,
-                      ),
-                      SizedBox(
-                        width: screenSize.width * 0.3,
-                        child: NormalTextField(
-                          labelText: 'Longitude',
-                          hintText: 'Longitude',
-                          isDisabled: true,
-                          textEditingController: _longitudeController,
-                          validatorFunction: (_) {
+                        _gap(context),
+                        MultilineTextField(
+                          controller: _addressController,
+                          validatorFunction: (value) {
+                            // add address validation
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter address';
+                            }
+
                             return null;
                           },
+                          label: 'Address',
+                          hintText: 'Enter your address',
                         ),
-                      ),
-                      SizedBox(
-                        width: screenSize.width * 0.013,
-                      ),
-                      SizedBox(
-                        // width: screenSize.width * 0.3,
-                        child: IconButton(
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(4),
+                        _gap(context),
+                        Row(
+                          children: [
+                            SizedBox(
+                              width: screenSize.width * 0.3,
+                              child: NormalTextField(
+                                labelText: 'Latitude',
+                                hintText: 'Latitude',
+                                isDisabled: true,
+                                textEditingController: _latitudeController,
+                                validatorFunction: (_) {
+                                  return null;
+                                },
+                              ),
                             ),
-                            backgroundColor: AppColors.primaryColor,
-                          ),
-                          icon: Icon(
-                            Icons.location_pin,
-                            color: Colors.white,
-                          ),
-                          onPressed: _getLocation,
+                            SizedBox(
+                              width: screenSize.width * 0.02,
+                            ),
+                            SizedBox(
+                              width: screenSize.width * 0.3,
+                              child: NormalTextField(
+                                labelText: 'Longitude',
+                                hintText: 'Longitude',
+                                isDisabled: true,
+                                textEditingController: _longitudeController,
+                                validatorFunction: (_) {
+                                  return null;
+                                },
+                              ),
+                            ),
+                            SizedBox(
+                              width: screenSize.width * 0.013,
+                            ),
+                            SizedBox(
+                              // width: screenSize.width * 0.3,
+                              child: IconButton(
+                                style: ElevatedButton.styleFrom(
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                  backgroundColor: AppColors.primaryColor,
+                                ),
+                                icon: Icon(
+                                  Icons.location_pin,
+                                  color: Colors.white,
+                                ),
+                                onPressed: _getLocation,
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                    ],
-                  ),
-                  _gap(context),
-                  NormalTextField(
-                    textEditingController: _placeController,
-                    validatorFunction: (value) {
-                      return null;
-                    },
-                    labelText: 'Place',
-                    hintText: 'Enter your place',
-                    isDisabled: true,
-                  ),
-                  _gap(context),
-                  MultilineTextField(
-                    controller: _descriptionController,
-                    validatorFunction: (value) {
-                      // add email validation
-                      // if (value == null || value.isEmpty) {
-                      //   return 'Please enter description';
-                      // }
+                        _gap(context),
+                        NormalTextField(
+                          textEditingController: _placeController,
+                          validatorFunction: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your place';
+                            }
 
-                      return null;
-                    },
-                    label: 'Description',
-                    hintText: 'Enter your description',
-                  ),
-                  _gap(context),
-                  Text(
-                    "Selected Amenities:",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  _gap(context),
-                  Wrap(
-                    spacing: 8.0,
-                    children: selectedAmenities.map((amenity) {
-                      return Chip(
-                        label: Text(amenity),
-                        deleteIcon: Icon(Icons.close),
-                        onDeleted: () {
-                          _toggleAmenity(
-                            amenity,
-                          ); // Remove the amenity when clicked
-                        },
-                      );
-                    }).toList(),
-                  ),
-                  _gap(context),
-                  AmenitiesSelection(
-                    selectedAmenities: selectedAmenities,
-                    onAmenityToggle: _toggleAmenity,
-                  ),
-                  _gap(context),
-                  Row(
-                    children: [
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          backgroundColor: AppColors.tertiaryColor,
+                            return null;
+                          },
+                          labelText: 'Place',
+                          hintText: 'Enter your place',
                         ),
-                        onPressed: _handlePrevious,
-                        child: const Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: Text(
-                            'Previous',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                        _gap(context),
+                        MultilineTextField(
+                          controller: _descriptionController,
+                          validatorFunction: (value) {
+                            // add description validation
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter description';
+                            }
+
+                            return null;
+                          },
+                          label: 'Description',
+                          hintText: 'Enter your description',
+                        ),
+                        _gap(context),
+                        Text(
+                          "Selected Amenities:",
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        _gap(context),
+                        AmnetiesListWidget(
+                          selectedAmenities: _selectedAmenities,
+                          onToggleAmnety: _toggleAmenity,
+                        ),
+                        _gap(context),
+                        AmenitiesSelection(
+                          selectedAmenities: _selectedAmenities,
+                          onAmenityToggle: _toggleAmenity,
+                        ),
+                        _gap(context),
+                        Row(
+                          children: [
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                                backgroundColor: AppColors.tertiaryColor,
+                              ),
+                              onPressed: _handlePrevious,
+                              child: const Padding(
+                                padding: EdgeInsets.all(10.0),
+                                child: Text(
+                                  'Previous',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
-                      Spacer(),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          backgroundColor: AppColors.primaryColor,
-                        ),
-                        onPressed: _handleNext,
-                        child: const Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: Text(
-                            'Next',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
+                            Spacer(),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                                backgroundColor: AppColors.primaryColor,
+                              ),
+                              onPressed: _handleNext,
+                              child: const Padding(
+                                padding: EdgeInsets.all(10.0),
+                                child: Text(
+                                  'Next',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
+                          ],
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ],
+                ),
               ),
             ),
-          ),
-        ),
+          );
+        },
       ),
       persistentFooterButtons: [
         InkWell(

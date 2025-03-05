@@ -46,9 +46,9 @@ class PropertyTypeDropdown extends StatelessWidget {
       }).toList(),
       onChanged: onTypeSelected,
       validator: (value) {
-        // if (value == null) {
-        //   return 'Please select a property type';
-        // }
+        if (value == null) {
+          return 'Please select a property type';
+        }
         return null;
       },
     );
