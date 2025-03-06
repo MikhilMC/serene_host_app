@@ -1,10 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:serene_host_app/app_constants/app_colors.dart';
 import 'package:serene_host_app/app_modules/login_module/view/login_screen.dart';
 import 'package:serene_host_app/app_modules/register_documents_upload_module/view/register_documents_upload_screen.dart';
+import 'package:serene_host_app/app_modules/register_submit_module/bloc/register_submit_bloc.dart';
+import 'package:serene_host_app/app_utils/app_helper.dart';
 import 'package:serene_host_app/app_widgets/normal_text_field.dart';
+import 'package:serene_host_app/app_widgets/overlay_loader_widget.dart';
 
 class RegisterSubmitScreen extends StatefulWidget {
   final int newHostId;
@@ -21,7 +25,7 @@ class _RegisterSubmitScreenState extends State<RegisterSubmitScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _rentingRateController = TextEditingController();
 
-  bool isAgreed = false;
+  bool _isAgreed = false;
 
   @override
   void dispose() {
@@ -43,12 +47,24 @@ class _RegisterSubmitScreenState extends State<RegisterSubmitScreen> {
 
   void _handleNext() {
     FocusScope.of(context).unfocus();
-    if (_formKey.currentState!.validate() && isAgreed) {
-      Navigator.pushReplacement(
+    if (_formKey.currentState!.validate()) {
+      if (_isAgreed) {
+        final registerSubmitBloc = BlocProvider.of<RegisterSubmitBloc>(context);
+
+        registerSubmitBloc.add(RegisterSubmitEvent.registrationSubmitted(
+          widget.newHostId,
+          double.parse(_rentingRateController.text.trim()),
+        ));
+      } else {
+        AppHelper.showErrorDialogue(
+          context,
+          "You have to accept terms & conditions",
+        );
+      }
+    } else {
+      AppHelper.showErrorDialogue(
         context,
-        MaterialPageRoute(
-          builder: (context) => LoginScreen(),
-        ),
+        "You have to enter rate.",
       );
     }
   }
@@ -100,111 +116,156 @@ class _RegisterSubmitScreenState extends State<RegisterSubmitScreen> {
           ],
         ),
       ),
-      body: Form(
-        key: _formKey,
-        child: Center(
-          child: Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: screenSize.width * 0.05,
-              vertical: screenSize.height * 0.05,
-            ),
-            constraints: BoxConstraints(maxWidth: screenSize.width * 0.85),
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  NormalTextField(
-                    textEditingController: _rentingRateController,
-                    validatorFunction: (value) {
-                      // add email validation
-                      // if (value == null || value.isEmpty) {
-                      //   return 'Please enter username';
-                      // }
-
-                      return null;
-                    },
-                    labelText: 'Rate',
-                    hintText: 'Enter your renting rate',
-                    textInputType: TextInputType.number,
-                  ),
-                  _gap(context),
-                  CheckboxListTile(
-                    value: isAgreed,
-                    onChanged: (bool? value) {
-                      setState(() {
-                        isAgreed = value!;
-                      });
-                    },
-                    title: RichText(
-                      text: TextSpan(
-                        text: "I accept the ",
-                        style: TextStyle(
-                          color: Colors.black,
-                        ),
-                        children: [
-                          TextSpan(
-                            text: "terms and conditions",
-                            style: TextStyle(
-                              color: Colors.lightBlue,
-                              decoration: TextDecoration.underline,
-                            ),
-                          )
-                        ],
-                      ),
+      body: BlocConsumer<RegisterSubmitBloc, RegisterSubmitState>(
+        listener: (context, state) {
+          state.whenOrNull(
+            loading: () {},
+            success: (response) {
+              if (response.status == "success") {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      "Submitting Registration Successfull.",
                     ),
                   ),
-                  _gap(context),
-                  Row(
-                    children: [
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          backgroundColor: AppColors.tertiaryColor,
-                        ),
-                        onPressed: _handlePrevious,
-                        child: const Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: Text(
-                            'Previous',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
-                          ),
-                        ),
-                      ),
-                      Spacer(),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(4),
-                          ),
-                          backgroundColor: AppColors.primaryColor,
-                        ),
-                        onPressed: _handleNext,
-                        child: const Padding(
-                          padding: EdgeInsets.all(10.0),
-                          child: Text(
-                            'Next',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                );
+
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => LoginScreen(),
                   ),
-                ],
+                );
+              } else {
+                AppHelper.showErrorDialogue(
+                  context,
+                  "Submitting Registration Failed.",
+                );
+              }
+            },
+            failure: (errorMessage) => AppHelper.showErrorDialogue(
+              context,
+              "Submitting Registration Failed: $errorMessage",
+            ),
+          );
+        },
+        builder: (context, state) {
+          bool isLoading = state.maybeWhen(
+            loading: () => true,
+            orElse: () => false,
+          );
+
+          return OverlayLoaderWidget(
+            isLoading: isLoading,
+            childWidget: Form(
+              key: _formKey,
+              child: Center(
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: screenSize.width * 0.05,
+                    vertical: screenSize.height * 0.05,
+                  ),
+                  constraints:
+                      BoxConstraints(maxWidth: screenSize.width * 0.85),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        NormalTextField(
+                          textEditingController: _rentingRateController,
+                          validatorFunction: (value) {
+                            // add email validation
+                            // if (value == null || value.isEmpty) {
+                            //   return 'Please enter username';
+                            // }
+
+                            return null;
+                          },
+                          labelText: 'Rate',
+                          hintText: 'Enter your renting rate',
+                          textInputType: TextInputType.number,
+                        ),
+                        _gap(context),
+                        CheckboxListTile(
+                          value: _isAgreed,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              _isAgreed = value!;
+                            });
+                          },
+                          title: RichText(
+                            text: TextSpan(
+                              text: "I accept the ",
+                              style: TextStyle(
+                                color: Colors.black,
+                              ),
+                              children: [
+                                TextSpan(
+                                  text: "terms and conditions",
+                                  style: TextStyle(
+                                    color: Colors.lightBlue,
+                                    decoration: TextDecoration.underline,
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                        _gap(context),
+                        Row(
+                          children: [
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                                backgroundColor: AppColors.tertiaryColor,
+                              ),
+                              onPressed: _handlePrevious,
+                              child: const Padding(
+                                padding: EdgeInsets.all(10.0),
+                                child: Text(
+                                  'Previous',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Spacer(),
+                            ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                                backgroundColor: AppColors.primaryColor,
+                              ),
+                              onPressed: _handleNext,
+                              child: const Padding(
+                                padding: EdgeInsets.all(10.0),
+                                child: Text(
+                                  'Next',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
+          );
+        },
       ),
       persistentFooterButtons: [
         InkWell(

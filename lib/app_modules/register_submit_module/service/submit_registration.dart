@@ -2,24 +2,17 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
-
 import 'package:serene_host_app/app_constants/app_urls.dart';
-import 'package:serene_host_app/app_models/register_response_model/register_response_model.dart';
-import 'package:serene_host_app/app_modules/register_property_details_module/class/property_registration_details.dart';
 
-Future<RegisterResponseModel> registerPropertyDetails({
+import 'package:serene_host_app/app_models/register_response_model/register_response_model.dart';
+
+Future<RegisterResponseModel> sumbitRegistration({
   required int hostId,
-  required PropertyRegistrationDetails propertyRegistrationDetails,
+  required double rate,
 }) async {
   try {
     Map<String, dynamic> body = {
-      "property_type": propertyRegistrationDetails.propertyType,
-      "address": propertyRegistrationDetails.address,
-      "latitude": propertyRegistrationDetails.latitude.toString(),
-      "longitude": propertyRegistrationDetails.longitude.toString(),
-      "description": propertyRegistrationDetails.description,
-      "amenities": propertyRegistrationDetails.amenities.join(", "),
-      "place": propertyRegistrationDetails.place
+      "rate": rate.toString(),
     };
 
     // Construct the URL with query parameters
