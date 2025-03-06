@@ -1,14 +1,10 @@
 // To parse this JSON data, do
 //
-//     final personalDetailsRegisterResponseModel = personalDetailsRegisterResponseModelFromJson(jsonString);
+//     final registerResponseModel = registerResponseModelFromJson(jsonString);
 
 import 'dart:convert';
 
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:serene_host_app/app_models/host_data_model/host_data_model.dart';
-
-part 'register_response_model.freezed.dart';
-part 'register_response_model.g.dart';
 
 RegisterResponseModel registerResponseModelFromJson(String str) =>
     RegisterResponseModel.fromJson(json.decode(str));
@@ -16,14 +12,28 @@ RegisterResponseModel registerResponseModelFromJson(String str) =>
 String registerResponseModelToJson(RegisterResponseModel data) =>
     json.encode(data.toJson());
 
-@freezed
-class RegisterResponseModel with _$RegisterResponseModel {
-  const factory RegisterResponseModel({
-    String? status,
-    String? message,
-    HostDataModel? data,
-  }) = _RegisterResponseModel;
+class RegisterResponseModel {
+  String? status;
+  String? message;
+  HostDataModel? data;
+
+  RegisterResponseModel({
+    this.status,
+    this.message,
+    this.data,
+  });
 
   factory RegisterResponseModel.fromJson(Map<String, dynamic> json) =>
-      _$RegisterResponseModelFromJson(json);
+      RegisterResponseModel(
+        status: json["status"],
+        message: json["message"],
+        data:
+            json["data"] == null ? null : HostDataModel.fromJson(json["data"]),
+      );
+
+  Map<String, dynamic> toJson() => {
+        "status": status,
+        "message": message,
+        "data": data?.toJson(),
+      };
 }

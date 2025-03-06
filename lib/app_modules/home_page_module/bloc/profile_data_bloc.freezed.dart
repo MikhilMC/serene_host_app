@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'document_upload_bloc.dart';
+part of 'profile_data_bloc.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,68 +15,65 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$DocumentUploadEvent {
+mixin _$ProfileDataEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(int hostId, DocumentUploadDetails documents)
-        documentUploaded,
+    required TResult Function() profileDataFetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(int hostId, DocumentUploadDetails documents)?
-        documentUploaded,
+    TResult? Function()? profileDataFetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(int hostId, DocumentUploadDetails documents)?
-        documentUploaded,
+    TResult Function()? profileDataFetched,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_documentUploaded value) documentUploaded,
+    required TResult Function(_profileDataFetched value) profileDataFetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_documentUploaded value)? documentUploaded,
+    TResult? Function(_profileDataFetched value)? profileDataFetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_documentUploaded value)? documentUploaded,
+    TResult Function(_profileDataFetched value)? profileDataFetched,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DocumentUploadEventCopyWith<$Res> {
-  factory $DocumentUploadEventCopyWith(
-          DocumentUploadEvent value, $Res Function(DocumentUploadEvent) then) =
-      _$DocumentUploadEventCopyWithImpl<$Res, DocumentUploadEvent>;
+abstract class $ProfileDataEventCopyWith<$Res> {
+  factory $ProfileDataEventCopyWith(
+          ProfileDataEvent value, $Res Function(ProfileDataEvent) then) =
+      _$ProfileDataEventCopyWithImpl<$Res, ProfileDataEvent>;
 }
 
 /// @nodoc
-class _$DocumentUploadEventCopyWithImpl<$Res, $Val extends DocumentUploadEvent>
-    implements $DocumentUploadEventCopyWith<$Res> {
-  _$DocumentUploadEventCopyWithImpl(this._value, this._then);
+class _$ProfileDataEventCopyWithImpl<$Res, $Val extends ProfileDataEvent>
+    implements $ProfileDataEventCopyWith<$Res> {
+  _$ProfileDataEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of DocumentUploadEvent
+  /// Create a copy of ProfileDataEvent
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -89,13 +86,13 @@ abstract class _$$StartedImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$StartedImplCopyWithImpl<$Res>
-    extends _$DocumentUploadEventCopyWithImpl<$Res, _$StartedImpl>
+    extends _$ProfileDataEventCopyWithImpl<$Res, _$StartedImpl>
     implements _$$StartedImplCopyWith<$Res> {
   __$$StartedImplCopyWithImpl(
       _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DocumentUploadEvent
+  /// Create a copy of ProfileDataEvent
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -106,7 +103,7 @@ class _$StartedImpl implements _Started {
 
   @override
   String toString() {
-    return 'DocumentUploadEvent.started()';
+    return 'ProfileDataEvent.started()';
   }
 
   @override
@@ -122,8 +119,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(int hostId, DocumentUploadDetails documents)
-        documentUploaded,
+    required TResult Function() profileDataFetched,
   }) {
     return started();
   }
@@ -132,8 +128,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(int hostId, DocumentUploadDetails documents)?
-        documentUploaded,
+    TResult? Function()? profileDataFetched,
   }) {
     return started?.call();
   }
@@ -142,8 +137,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(int hostId, DocumentUploadDetails documents)?
-        documentUploaded,
+    TResult Function()? profileDataFetched,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -156,7 +150,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_documentUploaded value) documentUploaded,
+    required TResult Function(_profileDataFetched value) profileDataFetched,
   }) {
     return started(this);
   }
@@ -165,7 +159,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_documentUploaded value)? documentUploaded,
+    TResult? Function(_profileDataFetched value)? profileDataFetched,
   }) {
     return started?.call(this);
   }
@@ -174,7 +168,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_documentUploaded value)? documentUploaded,
+    TResult Function(_profileDataFetched value)? profileDataFetched,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -184,115 +178,75 @@ class _$StartedImpl implements _Started {
   }
 }
 
-abstract class _Started implements DocumentUploadEvent {
+abstract class _Started implements ProfileDataEvent {
   const factory _Started() = _$StartedImpl;
 }
 
 /// @nodoc
-abstract class _$$documentUploadedImplCopyWith<$Res> {
-  factory _$$documentUploadedImplCopyWith(_$documentUploadedImpl value,
-          $Res Function(_$documentUploadedImpl) then) =
-      __$$documentUploadedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int hostId, DocumentUploadDetails documents});
+abstract class _$$profileDataFetchedImplCopyWith<$Res> {
+  factory _$$profileDataFetchedImplCopyWith(_$profileDataFetchedImpl value,
+          $Res Function(_$profileDataFetchedImpl) then) =
+      __$$profileDataFetchedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$documentUploadedImplCopyWithImpl<$Res>
-    extends _$DocumentUploadEventCopyWithImpl<$Res, _$documentUploadedImpl>
-    implements _$$documentUploadedImplCopyWith<$Res> {
-  __$$documentUploadedImplCopyWithImpl(_$documentUploadedImpl _value,
-      $Res Function(_$documentUploadedImpl) _then)
+class __$$profileDataFetchedImplCopyWithImpl<$Res>
+    extends _$ProfileDataEventCopyWithImpl<$Res, _$profileDataFetchedImpl>
+    implements _$$profileDataFetchedImplCopyWith<$Res> {
+  __$$profileDataFetchedImplCopyWithImpl(_$profileDataFetchedImpl _value,
+      $Res Function(_$profileDataFetchedImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DocumentUploadEvent
+  /// Create a copy of ProfileDataEvent
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? hostId = null,
-    Object? documents = null,
-  }) {
-    return _then(_$documentUploadedImpl(
-      null == hostId
-          ? _value.hostId
-          : hostId // ignore: cast_nullable_to_non_nullable
-              as int,
-      null == documents
-          ? _value.documents
-          : documents // ignore: cast_nullable_to_non_nullable
-              as DocumentUploadDetails,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$documentUploadedImpl implements _documentUploaded {
-  const _$documentUploadedImpl(this.hostId, this.documents);
-
-  @override
-  final int hostId;
-  @override
-  final DocumentUploadDetails documents;
+class _$profileDataFetchedImpl implements _profileDataFetched {
+  const _$profileDataFetchedImpl();
 
   @override
   String toString() {
-    return 'DocumentUploadEvent.documentUploaded(hostId: $hostId, documents: $documents)';
+    return 'ProfileDataEvent.profileDataFetched()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$documentUploadedImpl &&
-            (identical(other.hostId, hostId) || other.hostId == hostId) &&
-            (identical(other.documents, documents) ||
-                other.documents == documents));
+        (other.runtimeType == runtimeType && other is _$profileDataFetchedImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, hostId, documents);
-
-  /// Create a copy of DocumentUploadEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$documentUploadedImplCopyWith<_$documentUploadedImpl> get copyWith =>
-      __$$documentUploadedImplCopyWithImpl<_$documentUploadedImpl>(
-          this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(int hostId, DocumentUploadDetails documents)
-        documentUploaded,
+    required TResult Function() profileDataFetched,
   }) {
-    return documentUploaded(hostId, documents);
+    return profileDataFetched();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(int hostId, DocumentUploadDetails documents)?
-        documentUploaded,
+    TResult? Function()? profileDataFetched,
   }) {
-    return documentUploaded?.call(hostId, documents);
+    return profileDataFetched?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(int hostId, DocumentUploadDetails documents)?
-        documentUploaded,
+    TResult Function()? profileDataFetched,
     required TResult orElse(),
   }) {
-    if (documentUploaded != null) {
-      return documentUploaded(hostId, documents);
+    if (profileDataFetched != null) {
+      return profileDataFetched();
     }
     return orElse();
   }
@@ -301,121 +255,110 @@ class _$documentUploadedImpl implements _documentUploaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
-    required TResult Function(_documentUploaded value) documentUploaded,
+    required TResult Function(_profileDataFetched value) profileDataFetched,
   }) {
-    return documentUploaded(this);
+    return profileDataFetched(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
-    TResult? Function(_documentUploaded value)? documentUploaded,
+    TResult? Function(_profileDataFetched value)? profileDataFetched,
   }) {
-    return documentUploaded?.call(this);
+    return profileDataFetched?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
-    TResult Function(_documentUploaded value)? documentUploaded,
+    TResult Function(_profileDataFetched value)? profileDataFetched,
     required TResult orElse(),
   }) {
-    if (documentUploaded != null) {
-      return documentUploaded(this);
+    if (profileDataFetched != null) {
+      return profileDataFetched(this);
     }
     return orElse();
   }
 }
 
-abstract class _documentUploaded implements DocumentUploadEvent {
-  const factory _documentUploaded(
-          final int hostId, final DocumentUploadDetails documents) =
-      _$documentUploadedImpl;
-
-  int get hostId;
-  DocumentUploadDetails get documents;
-
-  /// Create a copy of DocumentUploadEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$documentUploadedImplCopyWith<_$documentUploadedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class _profileDataFetched implements ProfileDataEvent {
+  const factory _profileDataFetched() = _$profileDataFetchedImpl;
 }
 
 /// @nodoc
-mixin _$DocumentUploadState {
+mixin _$ProfileDataState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(RegisterResponseModel response) success,
-    required TResult Function(String errorMessage) failure,
+    required TResult Function(HostDataModel profileData) success,
+    required TResult Function(String errorMessage) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(RegisterResponseModel response)? success,
-    TResult? Function(String errorMessage)? failure,
+    TResult? Function(HostDataModel profileData)? success,
+    TResult? Function(String errorMessage)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(RegisterResponseModel response)? success,
-    TResult Function(String errorMessage)? failure,
+    TResult Function(HostDataModel profileData)? success,
+    TResult Function(String errorMessage)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_loading value) loading,
-    required TResult Function(_success value) success,
-    required TResult Function(_failure value) failure,
+    required TResult Function(ProfileDataLoading value) loading,
+    required TResult Function(ProfileDataSuccess value) success,
+    required TResult Function(ProfileDataError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_loading value)? loading,
-    TResult? Function(_success value)? success,
-    TResult? Function(_failure value)? failure,
+    TResult? Function(ProfileDataLoading value)? loading,
+    TResult? Function(ProfileDataSuccess value)? success,
+    TResult? Function(ProfileDataError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_loading value)? loading,
-    TResult Function(_success value)? success,
-    TResult Function(_failure value)? failure,
+    TResult Function(ProfileDataLoading value)? loading,
+    TResult Function(ProfileDataSuccess value)? success,
+    TResult Function(ProfileDataError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DocumentUploadStateCopyWith<$Res> {
-  factory $DocumentUploadStateCopyWith(
-          DocumentUploadState value, $Res Function(DocumentUploadState) then) =
-      _$DocumentUploadStateCopyWithImpl<$Res, DocumentUploadState>;
+abstract class $ProfileDataStateCopyWith<$Res> {
+  factory $ProfileDataStateCopyWith(
+          ProfileDataState value, $Res Function(ProfileDataState) then) =
+      _$ProfileDataStateCopyWithImpl<$Res, ProfileDataState>;
 }
 
 /// @nodoc
-class _$DocumentUploadStateCopyWithImpl<$Res, $Val extends DocumentUploadState>
-    implements $DocumentUploadStateCopyWith<$Res> {
-  _$DocumentUploadStateCopyWithImpl(this._value, this._then);
+class _$ProfileDataStateCopyWithImpl<$Res, $Val extends ProfileDataState>
+    implements $ProfileDataStateCopyWith<$Res> {
+  _$ProfileDataStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of DocumentUploadState
+  /// Create a copy of ProfileDataState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -428,13 +371,13 @@ abstract class _$$InitialImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$InitialImplCopyWithImpl<$Res>
-    extends _$DocumentUploadStateCopyWithImpl<$Res, _$InitialImpl>
+    extends _$ProfileDataStateCopyWithImpl<$Res, _$InitialImpl>
     implements _$$InitialImplCopyWith<$Res> {
   __$$InitialImplCopyWithImpl(
       _$InitialImpl _value, $Res Function(_$InitialImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DocumentUploadState
+  /// Create a copy of ProfileDataState
   /// with the given fields replaced by the non-null parameter values.
 }
 
@@ -445,7 +388,7 @@ class _$InitialImpl implements _Initial {
 
   @override
   String toString() {
-    return 'DocumentUploadState.initial()';
+    return 'ProfileDataState.initial()';
   }
 
   @override
@@ -462,8 +405,8 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(RegisterResponseModel response) success,
-    required TResult Function(String errorMessage) failure,
+    required TResult Function(HostDataModel profileData) success,
+    required TResult Function(String errorMessage) error,
   }) {
     return initial();
   }
@@ -473,8 +416,8 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(RegisterResponseModel response)? success,
-    TResult? Function(String errorMessage)? failure,
+    TResult? Function(HostDataModel profileData)? success,
+    TResult? Function(String errorMessage)? error,
   }) {
     return initial?.call();
   }
@@ -484,8 +427,8 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(RegisterResponseModel response)? success,
-    TResult Function(String errorMessage)? failure,
+    TResult Function(HostDataModel profileData)? success,
+    TResult Function(String errorMessage)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -498,9 +441,9 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_loading value) loading,
-    required TResult Function(_success value) success,
-    required TResult Function(_failure value) failure,
+    required TResult Function(ProfileDataLoading value) loading,
+    required TResult Function(ProfileDataSuccess value) success,
+    required TResult Function(ProfileDataError value) error,
   }) {
     return initial(this);
   }
@@ -509,9 +452,9 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_loading value)? loading,
-    TResult? Function(_success value)? success,
-    TResult? Function(_failure value)? failure,
+    TResult? Function(ProfileDataLoading value)? loading,
+    TResult? Function(ProfileDataSuccess value)? success,
+    TResult? Function(ProfileDataError value)? error,
   }) {
     return initial?.call(this);
   }
@@ -520,9 +463,9 @@ class _$InitialImpl implements _Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_loading value)? loading,
-    TResult Function(_success value)? success,
-    TResult Function(_failure value)? failure,
+    TResult Function(ProfileDataLoading value)? loading,
+    TResult Function(ProfileDataSuccess value)? success,
+    TResult Function(ProfileDataError value)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -532,43 +475,43 @@ class _$InitialImpl implements _Initial {
   }
 }
 
-abstract class _Initial implements DocumentUploadState {
+abstract class _Initial implements ProfileDataState {
   const factory _Initial() = _$InitialImpl;
 }
 
 /// @nodoc
-abstract class _$$loadingImplCopyWith<$Res> {
-  factory _$$loadingImplCopyWith(
-          _$loadingImpl value, $Res Function(_$loadingImpl) then) =
-      __$$loadingImplCopyWithImpl<$Res>;
+abstract class _$$ProfileDataLoadingImplCopyWith<$Res> {
+  factory _$$ProfileDataLoadingImplCopyWith(_$ProfileDataLoadingImpl value,
+          $Res Function(_$ProfileDataLoadingImpl) then) =
+      __$$ProfileDataLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$loadingImplCopyWithImpl<$Res>
-    extends _$DocumentUploadStateCopyWithImpl<$Res, _$loadingImpl>
-    implements _$$loadingImplCopyWith<$Res> {
-  __$$loadingImplCopyWithImpl(
-      _$loadingImpl _value, $Res Function(_$loadingImpl) _then)
+class __$$ProfileDataLoadingImplCopyWithImpl<$Res>
+    extends _$ProfileDataStateCopyWithImpl<$Res, _$ProfileDataLoadingImpl>
+    implements _$$ProfileDataLoadingImplCopyWith<$Res> {
+  __$$ProfileDataLoadingImplCopyWithImpl(_$ProfileDataLoadingImpl _value,
+      $Res Function(_$ProfileDataLoadingImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DocumentUploadState
+  /// Create a copy of ProfileDataState
   /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$loadingImpl implements _loading {
-  const _$loadingImpl();
+class _$ProfileDataLoadingImpl implements ProfileDataLoading {
+  const _$ProfileDataLoadingImpl();
 
   @override
   String toString() {
-    return 'DocumentUploadState.loading()';
+    return 'ProfileDataState.loading()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$loadingImpl);
+        (other.runtimeType == runtimeType && other is _$ProfileDataLoadingImpl);
   }
 
   @override
@@ -579,8 +522,8 @@ class _$loadingImpl implements _loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(RegisterResponseModel response) success,
-    required TResult Function(String errorMessage) failure,
+    required TResult Function(HostDataModel profileData) success,
+    required TResult Function(String errorMessage) error,
   }) {
     return loading();
   }
@@ -590,8 +533,8 @@ class _$loadingImpl implements _loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(RegisterResponseModel response)? success,
-    TResult? Function(String errorMessage)? failure,
+    TResult? Function(HostDataModel profileData)? success,
+    TResult? Function(String errorMessage)? error,
   }) {
     return loading?.call();
   }
@@ -601,8 +544,8 @@ class _$loadingImpl implements _loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(RegisterResponseModel response)? success,
-    TResult Function(String errorMessage)? failure,
+    TResult Function(HostDataModel profileData)? success,
+    TResult Function(String errorMessage)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -615,9 +558,9 @@ class _$loadingImpl implements _loading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_loading value) loading,
-    required TResult Function(_success value) success,
-    required TResult Function(_failure value) failure,
+    required TResult Function(ProfileDataLoading value) loading,
+    required TResult Function(ProfileDataSuccess value) success,
+    required TResult Function(ProfileDataError value) error,
   }) {
     return loading(this);
   }
@@ -626,9 +569,9 @@ class _$loadingImpl implements _loading {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_loading value)? loading,
-    TResult? Function(_success value)? success,
-    TResult? Function(_failure value)? failure,
+    TResult? Function(ProfileDataLoading value)? loading,
+    TResult? Function(ProfileDataSuccess value)? success,
+    TResult? Function(ProfileDataError value)? error,
   }) {
     return loading?.call(this);
   }
@@ -637,9 +580,9 @@ class _$loadingImpl implements _loading {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_loading value)? loading,
-    TResult Function(_success value)? success,
-    TResult Function(_failure value)? failure,
+    TResult Function(ProfileDataLoading value)? loading,
+    TResult Function(ProfileDataSuccess value)? success,
+    TResult Function(ProfileDataError value)? error,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -649,85 +592,86 @@ class _$loadingImpl implements _loading {
   }
 }
 
-abstract class _loading implements DocumentUploadState {
-  const factory _loading() = _$loadingImpl;
+abstract class ProfileDataLoading implements ProfileDataState {
+  const factory ProfileDataLoading() = _$ProfileDataLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$successImplCopyWith<$Res> {
-  factory _$$successImplCopyWith(
-          _$successImpl value, $Res Function(_$successImpl) then) =
-      __$$successImplCopyWithImpl<$Res>;
+abstract class _$$ProfileDataSuccessImplCopyWith<$Res> {
+  factory _$$ProfileDataSuccessImplCopyWith(_$ProfileDataSuccessImpl value,
+          $Res Function(_$ProfileDataSuccessImpl) then) =
+      __$$ProfileDataSuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({RegisterResponseModel response});
+  $Res call({HostDataModel profileData});
 }
 
 /// @nodoc
-class __$$successImplCopyWithImpl<$Res>
-    extends _$DocumentUploadStateCopyWithImpl<$Res, _$successImpl>
-    implements _$$successImplCopyWith<$Res> {
-  __$$successImplCopyWithImpl(
-      _$successImpl _value, $Res Function(_$successImpl) _then)
+class __$$ProfileDataSuccessImplCopyWithImpl<$Res>
+    extends _$ProfileDataStateCopyWithImpl<$Res, _$ProfileDataSuccessImpl>
+    implements _$$ProfileDataSuccessImplCopyWith<$Res> {
+  __$$ProfileDataSuccessImplCopyWithImpl(_$ProfileDataSuccessImpl _value,
+      $Res Function(_$ProfileDataSuccessImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DocumentUploadState
+  /// Create a copy of ProfileDataState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? response = null,
+    Object? profileData = null,
   }) {
-    return _then(_$successImpl(
-      null == response
-          ? _value.response
-          : response // ignore: cast_nullable_to_non_nullable
-              as RegisterResponseModel,
+    return _then(_$ProfileDataSuccessImpl(
+      null == profileData
+          ? _value.profileData
+          : profileData // ignore: cast_nullable_to_non_nullable
+              as HostDataModel,
     ));
   }
 }
 
 /// @nodoc
 
-class _$successImpl implements _success {
-  const _$successImpl(this.response);
+class _$ProfileDataSuccessImpl implements ProfileDataSuccess {
+  const _$ProfileDataSuccessImpl(this.profileData);
 
   @override
-  final RegisterResponseModel response;
+  final HostDataModel profileData;
 
   @override
   String toString() {
-    return 'DocumentUploadState.success(response: $response)';
+    return 'ProfileDataState.success(profileData: $profileData)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$successImpl &&
-            (identical(other.response, response) ||
-                other.response == response));
+            other is _$ProfileDataSuccessImpl &&
+            (identical(other.profileData, profileData) ||
+                other.profileData == profileData));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, response);
+  int get hashCode => Object.hash(runtimeType, profileData);
 
-  /// Create a copy of DocumentUploadState
+  /// Create a copy of ProfileDataState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$successImplCopyWith<_$successImpl> get copyWith =>
-      __$$successImplCopyWithImpl<_$successImpl>(this, _$identity);
+  _$$ProfileDataSuccessImplCopyWith<_$ProfileDataSuccessImpl> get copyWith =>
+      __$$ProfileDataSuccessImplCopyWithImpl<_$ProfileDataSuccessImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(RegisterResponseModel response) success,
-    required TResult Function(String errorMessage) failure,
+    required TResult Function(HostDataModel profileData) success,
+    required TResult Function(String errorMessage) error,
   }) {
-    return success(response);
+    return success(profileData);
   }
 
   @override
@@ -735,10 +679,10 @@ class _$successImpl implements _success {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(RegisterResponseModel response)? success,
-    TResult? Function(String errorMessage)? failure,
+    TResult? Function(HostDataModel profileData)? success,
+    TResult? Function(String errorMessage)? error,
   }) {
-    return success?.call(response);
+    return success?.call(profileData);
   }
 
   @override
@@ -746,12 +690,12 @@ class _$successImpl implements _success {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(RegisterResponseModel response)? success,
-    TResult Function(String errorMessage)? failure,
+    TResult Function(HostDataModel profileData)? success,
+    TResult Function(String errorMessage)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(response);
+      return success(profileData);
     }
     return orElse();
   }
@@ -760,9 +704,9 @@ class _$successImpl implements _success {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_loading value) loading,
-    required TResult Function(_success value) success,
-    required TResult Function(_failure value) failure,
+    required TResult Function(ProfileDataLoading value) loading,
+    required TResult Function(ProfileDataSuccess value) success,
+    required TResult Function(ProfileDataError value) error,
   }) {
     return success(this);
   }
@@ -771,9 +715,9 @@ class _$successImpl implements _success {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_loading value)? loading,
-    TResult? Function(_success value)? success,
-    TResult? Function(_failure value)? failure,
+    TResult? Function(ProfileDataLoading value)? loading,
+    TResult? Function(ProfileDataSuccess value)? success,
+    TResult? Function(ProfileDataError value)? error,
   }) {
     return success?.call(this);
   }
@@ -782,9 +726,9 @@ class _$successImpl implements _success {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_loading value)? loading,
-    TResult Function(_success value)? success,
-    TResult Function(_failure value)? failure,
+    TResult Function(ProfileDataLoading value)? loading,
+    TResult Function(ProfileDataSuccess value)? success,
+    TResult Function(ProfileDataError value)? error,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -794,43 +738,44 @@ class _$successImpl implements _success {
   }
 }
 
-abstract class _success implements DocumentUploadState {
-  const factory _success(final RegisterResponseModel response) = _$successImpl;
+abstract class ProfileDataSuccess implements ProfileDataState {
+  const factory ProfileDataSuccess(final HostDataModel profileData) =
+      _$ProfileDataSuccessImpl;
 
-  RegisterResponseModel get response;
+  HostDataModel get profileData;
 
-  /// Create a copy of DocumentUploadState
+  /// Create a copy of ProfileDataState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$successImplCopyWith<_$successImpl> get copyWith =>
+  _$$ProfileDataSuccessImplCopyWith<_$ProfileDataSuccessImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$failureImplCopyWith<$Res> {
-  factory _$$failureImplCopyWith(
-          _$failureImpl value, $Res Function(_$failureImpl) then) =
-      __$$failureImplCopyWithImpl<$Res>;
+abstract class _$$ProfileDataErrorImplCopyWith<$Res> {
+  factory _$$ProfileDataErrorImplCopyWith(_$ProfileDataErrorImpl value,
+          $Res Function(_$ProfileDataErrorImpl) then) =
+      __$$ProfileDataErrorImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String errorMessage});
 }
 
 /// @nodoc
-class __$$failureImplCopyWithImpl<$Res>
-    extends _$DocumentUploadStateCopyWithImpl<$Res, _$failureImpl>
-    implements _$$failureImplCopyWith<$Res> {
-  __$$failureImplCopyWithImpl(
-      _$failureImpl _value, $Res Function(_$failureImpl) _then)
+class __$$ProfileDataErrorImplCopyWithImpl<$Res>
+    extends _$ProfileDataStateCopyWithImpl<$Res, _$ProfileDataErrorImpl>
+    implements _$$ProfileDataErrorImplCopyWith<$Res> {
+  __$$ProfileDataErrorImplCopyWithImpl(_$ProfileDataErrorImpl _value,
+      $Res Function(_$ProfileDataErrorImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of DocumentUploadState
+  /// Create a copy of ProfileDataState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? errorMessage = null,
   }) {
-    return _then(_$failureImpl(
+    return _then(_$ProfileDataErrorImpl(
       null == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -841,22 +786,22 @@ class __$$failureImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$failureImpl implements _failure {
-  const _$failureImpl(this.errorMessage);
+class _$ProfileDataErrorImpl implements ProfileDataError {
+  const _$ProfileDataErrorImpl(this.errorMessage);
 
   @override
   final String errorMessage;
 
   @override
   String toString() {
-    return 'DocumentUploadState.failure(errorMessage: $errorMessage)';
+    return 'ProfileDataState.error(errorMessage: $errorMessage)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$failureImpl &&
+            other is _$ProfileDataErrorImpl &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
@@ -864,23 +809,24 @@ class _$failureImpl implements _failure {
   @override
   int get hashCode => Object.hash(runtimeType, errorMessage);
 
-  /// Create a copy of DocumentUploadState
+  /// Create a copy of ProfileDataState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$failureImplCopyWith<_$failureImpl> get copyWith =>
-      __$$failureImplCopyWithImpl<_$failureImpl>(this, _$identity);
+  _$$ProfileDataErrorImplCopyWith<_$ProfileDataErrorImpl> get copyWith =>
+      __$$ProfileDataErrorImplCopyWithImpl<_$ProfileDataErrorImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(RegisterResponseModel response) success,
-    required TResult Function(String errorMessage) failure,
+    required TResult Function(HostDataModel profileData) success,
+    required TResult Function(String errorMessage) error,
   }) {
-    return failure(errorMessage);
+    return error(errorMessage);
   }
 
   @override
@@ -888,10 +834,10 @@ class _$failureImpl implements _failure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(RegisterResponseModel response)? success,
-    TResult? Function(String errorMessage)? failure,
+    TResult? Function(HostDataModel profileData)? success,
+    TResult? Function(String errorMessage)? error,
   }) {
-    return failure?.call(errorMessage);
+    return error?.call(errorMessage);
   }
 
   @override
@@ -899,12 +845,12 @@ class _$failureImpl implements _failure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(RegisterResponseModel response)? success,
-    TResult Function(String errorMessage)? failure,
+    TResult Function(HostDataModel profileData)? success,
+    TResult Function(String errorMessage)? error,
     required TResult orElse(),
   }) {
-    if (failure != null) {
-      return failure(errorMessage);
+    if (error != null) {
+      return error(errorMessage);
     }
     return orElse();
   }
@@ -913,48 +859,49 @@ class _$failureImpl implements _failure {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Initial value) initial,
-    required TResult Function(_loading value) loading,
-    required TResult Function(_success value) success,
-    required TResult Function(_failure value) failure,
+    required TResult Function(ProfileDataLoading value) loading,
+    required TResult Function(ProfileDataSuccess value) success,
+    required TResult Function(ProfileDataError value) error,
   }) {
-    return failure(this);
+    return error(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Initial value)? initial,
-    TResult? Function(_loading value)? loading,
-    TResult? Function(_success value)? success,
-    TResult? Function(_failure value)? failure,
+    TResult? Function(ProfileDataLoading value)? loading,
+    TResult? Function(ProfileDataSuccess value)? success,
+    TResult? Function(ProfileDataError value)? error,
   }) {
-    return failure?.call(this);
+    return error?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Initial value)? initial,
-    TResult Function(_loading value)? loading,
-    TResult Function(_success value)? success,
-    TResult Function(_failure value)? failure,
+    TResult Function(ProfileDataLoading value)? loading,
+    TResult Function(ProfileDataSuccess value)? success,
+    TResult Function(ProfileDataError value)? error,
     required TResult orElse(),
   }) {
-    if (failure != null) {
-      return failure(this);
+    if (error != null) {
+      return error(this);
     }
     return orElse();
   }
 }
 
-abstract class _failure implements DocumentUploadState {
-  const factory _failure(final String errorMessage) = _$failureImpl;
+abstract class ProfileDataError implements ProfileDataState {
+  const factory ProfileDataError(final String errorMessage) =
+      _$ProfileDataErrorImpl;
 
   String get errorMessage;
 
-  /// Create a copy of DocumentUploadState
+  /// Create a copy of ProfileDataState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$failureImplCopyWith<_$failureImpl> get copyWith =>
+  _$$ProfileDataErrorImplCopyWith<_$ProfileDataErrorImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

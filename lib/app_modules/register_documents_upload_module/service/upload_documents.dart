@@ -44,7 +44,7 @@ Future<RegisterResponseModel> uploadDocuments({
       var imageStream = http.ByteStream(image.openRead());
       var imageLength = await image.length();
       var multipartFile = http.MultipartFile(
-        'images[]', // Field name for multiple images
+        'property_images[]', // Field name for multiple images
         imageStream,
         imageLength,
         filename: image.path.split("/").last,

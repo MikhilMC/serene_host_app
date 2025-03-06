@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       Center(
-        child: ProfileWidget(hostProfile: getDummyProfileData()),
+        child: ProfileWidget(),
       ),
     ];
     super.initState();

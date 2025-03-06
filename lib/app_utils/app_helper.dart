@@ -63,14 +63,6 @@ class AppHelper {
         behavior: SnackBarBehavior.floating, // Floating style
         margin: EdgeInsets.all(10.0), // Margin for floating behavior
         duration: Duration(seconds: 3), // Duration to display
-        action: SnackBarAction(
-          label: "Dismiss",
-          textColor: AppColors.tertiaryColor,
-          onPressed: () {
-            // Dismiss the snackbar
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
-          },
-        ),
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:serene_host_app/app_constants/app_colors.dart';
+import 'package:serene_host_app/app_modules/home_page_module/bloc/profile_data_bloc.dart';
 import 'package:serene_host_app/app_modules/introduction_screen_module/view/introduction_screen.dart';
 import 'package:serene_host_app/app_modules/login_module/bloc/host_login_bloc.dart';
 import 'package:serene_host_app/app_modules/register_documents_upload_module/bloc/document_upload_bloc.dart';
@@ -33,6 +34,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => HostLoginBloc(),
+        ),
+        BlocProvider(
+          create: (context) => ProfileDataBloc(),
         ),
       ],
       child: MaterialApp(
