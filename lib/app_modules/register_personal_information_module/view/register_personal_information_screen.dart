@@ -105,12 +105,9 @@ class _RegisterPersonalInformationScreenState
             loading: () {},
             success: (response) {
               if (response.status == "success") {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      "Host Personal Details Registration Successfull",
-                    ),
-                  ),
+                AppHelper.showCustomSnackBar(
+                  context,
+                  "Host Personal Details Registration Successfull.",
                 );
 
                 Navigator.pushReplacement(

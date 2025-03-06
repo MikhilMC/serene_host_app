@@ -122,12 +122,9 @@ class _RegisterSubmitScreenState extends State<RegisterSubmitScreen> {
             loading: () {},
             success: (response) {
               if (response.status == "success") {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      "Submitting Registration Successfull.",
-                    ),
-                  ),
+                AppHelper.showCustomSnackBar(
+                  context,
+                  "Submitting Registration Successfull.",
                 );
 
                 Navigator.pushReplacement(

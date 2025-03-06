@@ -153,12 +153,9 @@ class _RegisterDocumentsUploadScreenState
             loading: () {},
             success: (response) {
               if (response.status == "success") {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      "Documents Upload Successfull.",
-                    ),
-                  ),
+                AppHelper.showCustomSnackBar(
+                  context,
+                  "Documents Upload Successfull.",
                 );
 
                 Navigator.pushReplacement(

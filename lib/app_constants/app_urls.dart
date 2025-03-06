@@ -4,4 +4,5 @@ class AppUrls {
 
   static const String registerUrl = "$hostUrl/hosts/";
   static const String hostUpdateUrl = "$hostUrl/update_host/";
+  static const String hostLoginUrl = "$hostUrl/login/";
 }

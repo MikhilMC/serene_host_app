@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:serene_host_app/app_constants/app_colors.dart';
 
 class AppHelper {
   static Future<void> showErrorDialogue(
@@ -19,7 +20,7 @@ class AppHelper {
             fontWeight: FontWeight.bold,
           ),
           content: Text(
-            message.toUpperCase(),
+            message,
             style: const TextStyle(
               color: Colors.black,
               fontSize: 15,
@@ -41,6 +42,36 @@ class AppHelper {
           ],
         );
       },
+    );
+  }
+
+  static void showCustomSnackBar(BuildContext context, String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          message,
+          style: TextStyle(
+            color: AppColors.tertiaryColor,
+            fontSize: 16.0,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        backgroundColor: AppColors.primaryColor, // Background color
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0), // Rounded corners
+        ),
+        behavior: SnackBarBehavior.floating, // Floating style
+        margin: EdgeInsets.all(10.0), // Margin for floating behavior
+        duration: Duration(seconds: 3), // Duration to display
+        action: SnackBarAction(
+          label: "Dismiss",
+          textColor: AppColors.tertiaryColor,
+          onPressed: () {
+            // Dismiss the snackbar
+            ScaffoldMessenger.of(context).hideCurrentSnackBar();
+          },
+        ),
+      ),
     );
   }
 }

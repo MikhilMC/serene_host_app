@@ -216,12 +216,9 @@ class _RegisterPropertyDetailsScreenState
             loading: () {},
             success: (response) {
               if (response.status == "success") {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                      "Property Details Registration Successfull.",
-                    ),
-                  ),
+                AppHelper.showCustomSnackBar(
+                  context,
+                  "Property Details Registration Successfull.",
                 );
 
                 Navigator.pushReplacement(
