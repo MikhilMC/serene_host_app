@@ -9,6 +9,7 @@ import 'package:serene_host_app/app_modules/home_page_module/widget/profile_head
 import 'package:serene_host_app/app_modules/home_page_module/widget/profile_personal_details.dart';
 import 'package:serene_host_app/app_modules/home_page_module/widget/property_details.dart';
 import 'package:serene_host_app/app_modules/home_page_module/widget/section_title.dart';
+import 'package:serene_host_app/app_widgets/custom_error_widget.dart';
 
 class ProfileWidget extends StatefulWidget {
   const ProfileWidget({
@@ -65,7 +66,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
     return BlocBuilder<ProfileDataBloc, ProfileDataState>(
       builder: (context, state) {
         if (state is ProfileDataError) {
-          return ErrorWidget(state.errorMessage);
+          return CustomErrorWidget(
+            errorMessage: state.errorMessage,
+          );
         }
 
         if (state is! ProfileDataSuccess) {

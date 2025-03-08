@@ -60,8 +60,12 @@ class _EventScreenState extends State<EventScreen>
         ),
       ),
       body: TabBarView(
-          controller: _tabController,
-          children: [CreateEventForm(), ViewEventWidget()]),
+        controller: _tabController,
+        children: [
+          CreateEventForm(),
+          ViewEventWidget(),
+        ],
+      ),
     );
   }
 }
