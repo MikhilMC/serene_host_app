@@ -4,55 +4,56 @@
 
 import 'dart:convert';
 
-HostDataModel hostDataModelFromJson(String str) =>
-    HostDataModel.fromJson(json.decode(str));
+HostDataModel hostDataModelFromJson(String str) => HostDataModel.fromJson(json.decode(str));
 
 String hostDataModelToJson(HostDataModel data) => json.encode(data.toJson());
 
 class HostDataModel {
-  int? id;
-  List<String>? propertyImages;
-  String? profilePicture;
-  String? idProof;
-  String? name;
-  String? email;
-  String? phoneNumber;
-  String? password;
-  String? propertyType;
-  String? address;
-  String? place;
-  String? latitude;
-  String? longitude;
-  String? description;
-  String? amenities;
-  String? rate;
-  String? status;
+    int? id;
+    List<String>? propertyImages;
+    String? profilePicture;
+    String? idProof;
+    String? name;
+    String? email;
+    String? phoneNumber;
+    String? password;
+    String? propertyType;
+    String? address;
+    String? place;
+    String? latitude;
+    String? longitude;
+    String? description;
+    String? amenities;
+    String? rate;
+    String? status;
+    String? rating;
+    int? reviewCount;
 
-  HostDataModel({
-    this.id,
-    this.propertyImages,
-    this.profilePicture,
-    this.idProof,
-    this.name,
-    this.email,
-    this.phoneNumber,
-    this.password,
-    this.propertyType,
-    this.address,
-    this.place,
-    this.latitude,
-    this.longitude,
-    this.description,
-    this.amenities,
-    this.rate,
-    this.status,
-  });
+    HostDataModel({
+        this.id,
+        this.propertyImages,
+        this.profilePicture,
+        this.idProof,
+        this.name,
+        this.email,
+        this.phoneNumber,
+        this.password,
+        this.propertyType,
+        this.address,
+        this.place,
+        this.latitude,
+        this.longitude,
+        this.description,
+        this.amenities,
+        this.rate,
+        this.status,
+        this.rating,
+        this.reviewCount,
+    });
 
-  factory HostDataModel.fromJson(Map<String, dynamic> json) => HostDataModel(
+    factory HostDataModel.fromJson(Map<String, dynamic> json) => HostDataModel(
         id: json["id"],
-        propertyImages: json["property_images"] == null
-            ? []
-            : List<String>.from(json["property_images"]!.map((x) => x)),
+        propertyImages: json["property_images"] == null ? [] : List<String>.from(json["property_images"]!.map((x) => x)),
         profilePicture: json["profile_picture"],
         idProof: json["id_proof"],
         name: json["name"],
@@ -68,13 +69,13 @@ class HostDataModel {
         amenities: json["amenities"],
         rate: json["rate"],
         status: json["status"],
-      );
+        rating: json["rating"],
+        reviewCount: json["review_count"],
+    );
 
-  Map<String, dynamic> toJson() => {
+    Map<String, dynamic> toJson() => {
         "id": id,
-        "property_images": propertyImages == null
-            ? []
-            : List<dynamic>.from(propertyImages!.map((x) => x)),
+        "property_images": propertyImages == null ? [] : List<dynamic>.from(propertyImages!.map((x) => x)),
         "profile_picture": profilePicture,
         "id_proof": idProof,
         "name": name,
@@ -90,5 +91,7 @@ class HostDataModel {
         "amenities": amenities,
         "rate": rate,
         "status": status,
-      };
+        "rating": rating,
+        "review_count": reviewCount,
+    };
 }

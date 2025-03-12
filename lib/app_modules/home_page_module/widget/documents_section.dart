@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:serene_host_app/app_modules/home_page_module/widget/image_preview.dart';
-import 'package:serene_host_app/app_modules/home_page_module/widget/property_images.dart';
+import 'package:serene_host_app/app_modules/home_page_module/widget/property_images_carousel.dart';
 
 class DocumentsSection extends StatelessWidget {
   final Map<String, dynamic> host;
@@ -22,7 +22,7 @@ class DocumentsSection extends StatelessWidget {
         const SizedBox(height: 10),
         const Text("Property Images",
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-        PropertyImages(images: host["propertyImages"]),
+        PropertyImagesCarousel(images: host["propertyImages"]),
       ],
     );
   }

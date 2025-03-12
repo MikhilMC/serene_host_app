@@ -23,7 +23,7 @@ class DetailsItem extends StatelessWidget {
           Expanded(
             child: Text(
               "$label: ${value ?? "Not provided"}",
-              style: const TextStyle(fontSize: 14),
+              style: const TextStyle(fontSize: 16),
             ),
           ),
         ],

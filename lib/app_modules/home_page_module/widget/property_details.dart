@@ -39,6 +39,16 @@ class PropertyDetails extends StatelessWidget {
           label: "Renting Rate",
           value: "\$${host["rentingRate"]} per night",
         ),
+        DetailsItem(
+          icon: Icons.star,
+          label: "Average Rating",
+          value: "${host["rating"]}",
+        ),
+        DetailsItem(
+          icon: Icons.numbers,
+          label: "Review Count",
+          value: "${host["reviewCount"]} ratings",
+        ),
         const SizedBox(height: 10),
         const Text(
           "Amenities",
