@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:serene_host_app/app_modules/booking_history_details_module/widget/history_details_row.dart';
 import 'package:serene_host_app/app_modules/booking_history_details_module/widget/history_section_card.dart';
 import 'package:serene_host_app/app_modules/home_page_module/model/booking_history.dart';
+import 'package:serene_host_app/app_modules/report_user_module/view/report_user_screen.dart';
 
 class BookingHistoryDetailsScreen extends StatelessWidget {
   final BookingHistory booking;
@@ -241,6 +242,35 @@ class BookingHistoryDetailsScreen extends StatelessWidget {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(
                           content: Text("Invoice Downloaded"),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: ElevatedButton.icon(
+                    icon: const Icon(Icons.report),
+                    label: const Text(
+                      "Report User",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red,
+                      iconColor: Colors.white,
+                      textStyle: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ReportUserScreen(
+                            bookingId: 1,
+                          ),
                         ),
                       );
                     },
