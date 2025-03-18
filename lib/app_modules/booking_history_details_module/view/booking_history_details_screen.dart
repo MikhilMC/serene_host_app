@@ -198,85 +198,83 @@ class BookingHistoryDetailsScreen extends StatelessWidget {
               ),
             const SizedBox(height: 16),
 
-            // Action Buttons
-            Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton.icon(
-                    icon: const Icon(Icons.phone),
-                    label: const Text(
-                      "Contact Guest",
-                      style: TextStyle(
-                        color: Colors.white,
+            // Action Buttons with a cleaner layout
+            Card(
+              elevation: 2,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Wrap(
+                  spacing: 16,
+                  runSpacing: 16,
+                  alignment: WrapAlignment.center,
+                  children: [
+                    // Contact Guest Button
+                    ElevatedButton.icon(
+                      icon: const Icon(Icons.phone, color: Colors.white),
+                      label: const Text(
+                        "Contact Guest",
+                        style: TextStyle(color: Colors.white),
                       ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blue, iconColor: Colors.white),
-                    onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text("Calling Guest..."),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: ElevatedButton.icon(
-                    icon: const Icon(Icons.file_download),
-                    label: const Text(
-                      "Download Invoice",
-                      style: TextStyle(
-                        color: Colors.white,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.blue,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 24, vertical: 12),
                       ),
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text("Calling Guest...")),
+                        );
+                      },
                     ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      iconColor: Colors.white,
-                      textStyle: TextStyle(
-                        color: Colors.white,
+
+                    // Download Invoice Button
+                    ElevatedButton.icon(
+                      icon:
+                          const Icon(Icons.file_download, color: Colors.white),
+                      label: const Text(
+                        "Download Invoice",
+                        style: TextStyle(color: Colors.white),
                       ),
-                    ),
-                    onPressed: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text("Invoice Downloaded"),
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: ElevatedButton.icon(
-                    icon: const Icon(Icons.report),
-                    label: const Text(
-                      "Report User",
-                      style: TextStyle(
-                        color: Colors.white,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 24, vertical: 12),
                       ),
+                      onPressed: () {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text("Invoice Downloaded")),
+                        );
+                      },
                     ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red,
-                      iconColor: Colors.white,
-                      textStyle: TextStyle(
-                        color: Colors.white,
+
+                    // Report User Button
+                    ElevatedButton.icon(
+                      icon: const Icon(Icons.report, color: Colors.white),
+                      label: const Text(
+                        "Report User",
+                        style: TextStyle(color: Colors.white),
                       ),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ReportUserScreen(
-                            bookingId: 1,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red,
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 24, vertical: 12),
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                ReportUserScreen(bookingId: 1),
                           ),
-                        ),
-                      );
-                    },
-                  ),
+                        );
+                      },
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ],
         ),
