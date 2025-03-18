@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:serene_host_app/app_constants/app_colors.dart';
 import 'package:serene_host_app/app_modules/event_module/widget/create_event_form.dart';
+import 'package:serene_host_app/app_modules/event_module/widget/event_history_widget.dart';
 import 'package:serene_host_app/app_modules/event_module/widget/view_event_widget.dart';
 
 class EventScreen extends StatefulWidget {
@@ -16,7 +17,7 @@ class _EventScreenState extends State<EventScreen>
 
   @override
   void initState() {
-    _tabController = TabController(length: 2, vsync: this);
+    _tabController = TabController(length: 3, vsync: this);
     super.initState();
   }
 
@@ -55,6 +56,9 @@ class _EventScreenState extends State<EventScreen>
               Tab(
                 text: "View Event",
               ),
+              Tab(
+                text: "Event History",
+              )
             ],
           ),
         ),
@@ -64,6 +68,7 @@ class _EventScreenState extends State<EventScreen>
         children: [
           CreateEventForm(),
           ViewEventWidget(),
+          EventHistoryWidget(),
         ],
       ),
     );

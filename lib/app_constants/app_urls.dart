@@ -7,4 +7,6 @@ class AppUrls {
   static const String hostLoginUrl = "$hostUrl/login/";
 
   static const String getProfileDataUrl = "$hostUrl/view_profile/";
+
+  static const String addEventUrl = "$hostUrl/add_event/";
 }

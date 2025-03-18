@@ -32,7 +32,6 @@ class _ReportUserScreenState extends State<ReportUserScreen> {
         _isSubmitting = true;
       });
 
-      // TODO: Implement your API call here
       // Example:
       // await YourApiService.reportUser(
       //   bookingId: widget.bookingId,
