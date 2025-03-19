@@ -9,4 +9,6 @@ class AppUrls {
   static const String getProfileDataUrl = "$hostUrl/view_profile/";
 
   static const String addEventUrl = "$hostUrl/add_event/";
+  static const String getUpcomingEventsUrl = "$hostUrl/upcoming_events/";
+  static const String getEventsHistoryUrl = "$hostUrl/event_history/";
 }

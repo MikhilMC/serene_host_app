@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:serene_host_app/app_constants/app_colors.dart';
 import 'package:serene_host_app/app_modules/event_module/bloc/add_event_bloc/add_event_bloc.dart';
+import 'package:serene_host_app/app_modules/event_module/bloc/events_history_bloc/events_history_bloc.dart';
+import 'package:serene_host_app/app_modules/event_module/bloc/get_upcoming_events_bloc/get_upcoming_events_bloc.dart';
 import 'package:serene_host_app/app_modules/home_page_module/bloc/profile_data_bloc.dart';
 import 'package:serene_host_app/app_modules/introduction_screen_module/view/introduction_screen.dart';
 import 'package:serene_host_app/app_modules/login_module/bloc/host_login_bloc.dart';
@@ -41,6 +43,12 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => AddEventBloc(),
+        ),
+        BlocProvider(
+          create: (context) => GetUpcomingEventsBloc(),
+        ),
+        BlocProvider(
+          create: (context) => EventsHistoryBloc(),
         ),
       ],
       child: MaterialApp(
