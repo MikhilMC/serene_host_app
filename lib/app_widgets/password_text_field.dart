@@ -20,7 +20,7 @@ class _PasswordTextFieldState extends State<PasswordTextField> {
     return TextFormField(
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'Please enter some text';
+          return 'Please enter password';
         }
 
         if (value.length < 6) {

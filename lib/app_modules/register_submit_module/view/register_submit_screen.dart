@@ -173,9 +173,9 @@ class _RegisterSubmitScreenState extends State<RegisterSubmitScreen> {
                           textEditingController: _rentingRateController,
                           validatorFunction: (value) {
                             // add email validation
-                            // if (value == null || value.isEmpty) {
-                            //   return 'Please enter username';
-                            // }
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter rate';
+                            }
 
                             return null;
                           },

@@ -32,6 +32,9 @@ class RegisterPropertyDetailsScreen extends StatefulWidget {
 class _RegisterPropertyDetailsScreenState
     extends State<RegisterPropertyDetailsScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _maxCapacityController = TextEditingController();
+  final TextEditingController _numberOfRoomsController =
+      TextEditingController();
   final TextEditingController _addressController = TextEditingController();
   final TextEditingController _latitudeController = TextEditingController();
   final TextEditingController _longitudeController = TextEditingController();
@@ -44,6 +47,8 @@ class _RegisterPropertyDetailsScreenState
   @override
   void dispose() {
     // Dispose controllers to avoid memory leaks
+    _maxCapacityController.dispose();
+    _numberOfRoomsController.dispose();
     _addressController.dispose();
     _latitudeController.dispose();
     _longitudeController.dispose();
@@ -276,6 +281,44 @@ class _RegisterPropertyDetailsScreenState
                           },
                         ),
                         _gap(context),
+                        Row(
+                          children: [
+                            SizedBox(
+                              width: screenSize.width * 0.35,
+                              child: NormalTextField(
+                                labelText: 'Maximum Capacity',
+                                hintText: 'Enter maximum capacity',
+                                textEditingController: _maxCapacityController,
+                                validatorFunction: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please enter maximum capacity';
+                                  }
+                                  return null;
+                                },
+                                textInputType: TextInputType.number,
+                              ),
+                            ),
+                            SizedBox(
+                              width: screenSize.width * 0.02,
+                            ),
+                            SizedBox(
+                              width: screenSize.width * 0.375,
+                              child: NormalTextField(
+                                labelText: 'Number of Rooms',
+                                hintText: 'Enter number of rooms',
+                                textEditingController: _numberOfRoomsController,
+                                validatorFunction: (value) {
+                                  if (value == null || value.isEmpty) {
+                                    return 'Please enter number of rooms';
+                                  }
+                                  return null;
+                                },
+                                textInputType: TextInputType.number,
+                              ),
+                            ),
+                          ],
+                        ),
+                        _gap(context),
                         MultilineTextField(
                           controller: _addressController,
                           validatorFunction: (value) {
@@ -323,7 +366,8 @@ class _RegisterPropertyDetailsScreenState
                               width: screenSize.width * 0.013,
                             ),
                             SizedBox(
-                              // width: screenSize.width * 0.3,
+                              width: screenSize.width * 0.115,
+                              height: screenSize.height * 0.06,
                               child: IconButton(
                                 style: ElevatedButton.styleFrom(
                                   shape: RoundedRectangleBorder(
