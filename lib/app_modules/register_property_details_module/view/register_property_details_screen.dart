@@ -84,6 +84,8 @@ class _RegisterPropertyDetailsScreenState
           PropertyRegistrationDetails propertyRegistrationDetails =
               PropertyRegistrationDetails(
             propertyType: _selectedPropertyType!,
+            maximumCapacity: int.parse(_maxCapacityController.text.trim()),
+            numberOfRooms: int.parse(_numberOfRoomsController.text.trim()),
             address: _addressController.text.trim(),
             latitude: double.parse(_latitudeController.text.trim()),
             longitude: double.parse(_longitudeController.text.trim()),

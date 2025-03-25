@@ -49,6 +49,16 @@ class PropertyDetails extends StatelessWidget {
           label: "Review Count",
           value: "${host["reviewCount"]} ratings",
         ),
+        DetailsItem(
+          icon: Icons.person,
+          label: "Maximum Capacity",
+          value: "${host["maxCapacity"]} persons",
+        ),
+        DetailsItem(
+          icon: Icons.room_rounded,
+          label: "Number Of Rooms",
+          value: "${host["numberOfRooms"]} rooms",
+        ),
         const SizedBox(height: 10),
         const Text(
           "Amenities",

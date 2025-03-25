@@ -99,7 +99,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
           "rentingRate": state.profileData.rate ?? "",
           "amenities": state.profileData.amenities?.split(", ") ?? [],
           "rating": state.profileData.rating ?? "0.0",
-          "reviewCount": state.profileData.reviewCount ?? 0
+          "reviewCount": state.profileData.reviewCount ?? 0,
+          "maxCapacity": state.profileData.maxCapacity ?? 0,
+          "numberOfRooms": state.profileData.rooms ?? 0
         };
 
         final List<String> propertyImages =
