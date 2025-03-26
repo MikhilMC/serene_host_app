@@ -25,19 +25,13 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     _appBodies = [
-      Center(
-        child: CurrentBookingsWidget(
-          bookings: generateRandomBookings(15),
-        ),
+      CurrentBookingsWidget(
+        bookings: generateRandomBookings(15),
       ),
-      Center(
-        child: BookingReviewsWidget(
-          bookingReviews: generateRandomReviews(15),
-        ),
+      BookingReviewsWidget(
+        bookingReviews: generateRandomReviews(15),
       ),
-      Center(
-        child: ProfileWidget(),
-      ),
+      ProfileWidget(),
     ];
     super.initState();
   }

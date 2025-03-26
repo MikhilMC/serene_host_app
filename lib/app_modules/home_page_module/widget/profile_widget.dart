@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:serene_host_app/app_constants/app_colors.dart';
 import 'package:serene_host_app/app_constants/app_urls.dart';
-import 'package:serene_host_app/app_modules/home_page_module/bloc/profile_data_bloc.dart';
+import 'package:serene_host_app/app_modules/home_page_module/bloc/profile_data_bloc/profile_data_bloc.dart';
 import 'package:serene_host_app/app_modules/home_page_module/widget/documents_section.dart';
 import 'package:serene_host_app/app_modules/home_page_module/widget/profile_header.dart';
 import 'package:serene_host_app/app_modules/home_page_module/widget/profile_personal_details.dart';

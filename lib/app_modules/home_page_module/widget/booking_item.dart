@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:serene_host_app/app_modules/booking_details_module/view/booking_details_screen.dart';
 
-import 'package:serene_host_app/app_modules/home_page_module/model/booking.dart';
+import 'package:serene_host_app/app_models/host_booking_model/host_booking_model.dart';
+import 'package:serene_host_app/app_utils/app_helper.dart';
 
 class BookingItem extends StatelessWidget {
-  final Booking booking;
+  final HostBookingModel booking;
   const BookingItem({
     super.key,
     required this.booking,
@@ -21,7 +22,7 @@ class BookingItem extends StatelessWidget {
         context,
         MaterialPageRoute(
           builder: (context) => BookingDetailsScreen(
-            booking: booking,
+            bookingId: booking.id,
           ),
         ),
       ),
@@ -44,7 +45,7 @@ class BookingItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      booking.guestName,
+                      booking.userName,
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -53,21 +54,20 @@ class BookingItem extends StatelessWidget {
                     ),
                     Chip(
                       label: Text(
-                        booking.paymentStatus,
+                        booking.paymentStatus.toUpperCase(),
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                         ),
                       ),
                       avatar: Icon(
-                        booking.paymentStatus == "Paid"
+                        booking.paymentStatus == "success"
                             ? Icons.check_circle
                             : Icons.warning_amber_rounded,
                         color: Colors.white,
                       ),
-                      backgroundColor: booking.paymentStatus == "Paid"
-                          ? Colors.green
-                          : Colors.orange,
+                      backgroundColor: AppHelper.getPaymentStatusColor(
+                          booking.paymentStatus),
                     ),
                   ],
                 ),
@@ -83,7 +83,7 @@ class BookingItem extends StatelessWidget {
                     ),
                     const SizedBox(width: 6),
                     Text(
-                      "${dateFormat.format(booking.checkInDate)} - ${dateFormat.format(booking.checkOutDate)}",
+                      "${dateFormat.format(booking.startDate)} - ${dateFormat.format(booking.endDate)}",
                       style: const TextStyle(
                         fontSize: 16,
                         color: Colors.black87,
@@ -107,7 +107,7 @@ class BookingItem extends StatelessWidget {
                           ),
                           const SizedBox(width: 6),
                           Text(
-                            "${booking.numGuests} Guest${booking.numGuests > 1 ? 's' : ''}",
+                            "${booking.noOfGuests} Guest${booking.noOfGuests > 1 ? 's' : ''}",
                             style: const TextStyle(
                               fontSize: 16,
                               color: Colors.black87,
@@ -127,9 +127,7 @@ class BookingItem extends StatelessWidget {
                           ),
                           const SizedBox(width: 6),
                           Text(
-                            booking.paymentStatus == "Paid"
-                                ? "Total Amount: ₹${booking.totalPrice.toStringAsFixed(2)}"
-                                : "Paid: ₹${booking.amountPaid.toStringAsFixed(2)}, Due: ₹${booking.balanceDue.toStringAsFixed(2)}",
+                            "Total Amount: ₹${double.parse(booking.totalCost) + double.parse(booking.platformFee)}",
                             style: const TextStyle(
                               fontSize: 16,
                               color: Colors.black87,

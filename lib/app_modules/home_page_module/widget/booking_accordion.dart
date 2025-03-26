@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-import 'package:serene_host_app/app_modules/home_page_module/model/booking.dart';
+import 'package:serene_host_app/app_models/host_booking_model/host_booking_model.dart';
 import 'package:serene_host_app/app_modules/home_page_module/widget/booking_item.dart';
 
 class BookingAccordion extends StatelessWidget {
@@ -14,7 +14,7 @@ class BookingAccordion extends StatelessWidget {
     required this.onExpansionChanged,
   });
   final String title;
-  final List<Booking> bookings;
+  final List<HostBookingModel> bookings;
   final Color color;
   final bool isExpanded;
   final ValueChanged<bool> onExpansionChanged;

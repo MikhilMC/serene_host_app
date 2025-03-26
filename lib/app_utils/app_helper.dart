@@ -66,4 +66,17 @@ class AppHelper {
       ),
     );
   }
+
+  static Color getPaymentStatusColor(String paymentStatus) {
+    switch (paymentStatus) {
+      case "pending":
+        return Colors.orange;
+      case "full_refund":
+        return Colors.red;
+      case "partial_refund":
+        return Colors.blue;
+      default:
+        return Colors.green;
+    }
+  }
 }
