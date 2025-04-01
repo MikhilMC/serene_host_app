@@ -8,7 +8,7 @@ import 'package:serene_host_app/app_models/host_booking_model/host_booking_model
 
 Future<List<HostBookingModel>> getHostBookings() async {
   try {
-    int userId = 31;
+    int userId = 38;
     Map<String, dynamic> params = {
       "id": userId.toString(),
     };
@@ -27,6 +27,8 @@ Future<List<HostBookingModel>> getHostBookings() async {
       final List<dynamic> decoded = jsonDecode(resp.body);
       final response =
           decoded.map((item) => HostBookingModel.fromJson(item)).toList();
+
+      response.sort((a, b) => b.startDate.compareTo(a.startDate));
 
       return response;
     } else {

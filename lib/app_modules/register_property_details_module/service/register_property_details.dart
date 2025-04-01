@@ -14,6 +14,7 @@ Future<RegisterResponseModel> registerPropertyDetails({
   try {
     Map<String, dynamic> body = {
       "property_type": propertyRegistrationDetails.propertyType,
+      "property_name": propertyRegistrationDetails.propertyName,
       "max_capacity": propertyRegistrationDetails.maximumCapacity.toString(),
       "rooms": propertyRegistrationDetails.numberOfRooms.toString(),
       "address": propertyRegistrationDetails.address,

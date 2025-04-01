@@ -82,7 +82,7 @@ class _RegisterDocumentsUploadScreenState
           DocumentUploadDetails documentUploadDetails = DocumentUploadDetails(
             profilePicture: _profilePicture!,
             idProof: _idProof!,
-            images: _propertyImages,
+            propertyImages: _propertyImages,
           );
 
           final documentUploadBloc =

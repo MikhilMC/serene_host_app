@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:serene_host_app/app_constants/app_urls.dart';
-
 import 'package:serene_host_app/app_models/register_response_model/register_response_model.dart';
 import 'package:serene_host_app/app_modules/register_documents_upload_module/class/document_upload_details.dart';
 
@@ -17,39 +17,37 @@ Future<RegisterResponseModel> uploadDocuments({
 
     var request = http.MultipartRequest("PATCH", url);
 
-    var profilePictureStream =
-        http.ByteStream(documentUploadDetails.profilePicture.openRead());
-    var profilePictureLength =
-        await documentUploadDetails.profilePicture.length();
-    var profilePictureMultipartFile = http.MultipartFile(
-      'profile_picture',
-      profilePictureStream,
-      profilePictureLength,
-      filename: documentUploadDetails.profilePicture.path.split("/").last,
-    );
-    request.files.add(profilePictureMultipartFile);
+    request.headers.addAll({
+      'Content-Type': 'multipart/form-data',
+    });
 
-    var idProofStream =
-        http.ByteStream(documentUploadDetails.idProof.openRead());
-    var idProofLength = await documentUploadDetails.idProof.length();
-    var idProofMultipartFile = http.MultipartFile(
-      'id_proof',
-      idProofStream,
-      idProofLength,
-      filename: documentUploadDetails.idProof.path.split("/").last,
+    // Add profile picture
+    request.files.add(
+      await http.MultipartFile.fromPath(
+        'profile_picture',
+        documentUploadDetails.profilePicture.path,
+      ),
     );
-    request.files.add(idProofMultipartFile);
 
-    for (var image in documentUploadDetails.images) {
-      var imageStream = http.ByteStream(image.openRead());
-      var imageLength = await image.length();
-      var multipartFile = http.MultipartFile(
-        'property_images[]', // Field name for multiple images
-        imageStream,
-        imageLength,
-        filename: image.path.split("/").last,
+    // Add ID proof
+    request.files.add(
+      await http.MultipartFile.fromPath(
+        'id_proof',
+        documentUploadDetails.idProof.path,
+      ),
+    );
+
+    // Add multiple property images (without `[]` in field name)
+    if (kDebugMode) {
+      print(documentUploadDetails.propertyImages);
+    }
+    for (var image in documentUploadDetails.propertyImages) {
+      request.files.add(
+        await http.MultipartFile.fromPath(
+          'property_images', // No `[]`
+          image.path,
+        ),
       );
-      request.files.add(multipartFile);
     }
 
     final resp = await request.send();
@@ -61,7 +59,7 @@ Future<RegisterResponseModel> uploadDocuments({
     } else {
       final Map<String, dynamic> errorResponse = jsonDecode(responseBody);
       throw Exception(
-        'Failed to add product: ${errorResponse['message'] ?? 'Unknown error'}',
+        'Failed to upload images: ${errorResponse['message'] ?? 'Unknown error'}',
       );
     }
   } on SocketException {

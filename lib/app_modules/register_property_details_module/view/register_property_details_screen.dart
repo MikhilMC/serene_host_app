@@ -32,6 +32,7 @@ class RegisterPropertyDetailsScreen extends StatefulWidget {
 class _RegisterPropertyDetailsScreenState
     extends State<RegisterPropertyDetailsScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _propertyNameController = TextEditingController();
   final TextEditingController _maxCapacityController = TextEditingController();
   final TextEditingController _numberOfRoomsController =
       TextEditingController();
@@ -47,6 +48,7 @@ class _RegisterPropertyDetailsScreenState
   @override
   void dispose() {
     // Dispose controllers to avoid memory leaks
+    _propertyNameController.dispose();
     _maxCapacityController.dispose();
     _numberOfRoomsController.dispose();
     _addressController.dispose();
@@ -84,6 +86,7 @@ class _RegisterPropertyDetailsScreenState
           PropertyRegistrationDetails propertyRegistrationDetails =
               PropertyRegistrationDetails(
             propertyType: _selectedPropertyType!,
+            propertyName: _propertyNameController.text.trim(),
             maximumCapacity: int.parse(_maxCapacityController.text.trim()),
             numberOfRooms: int.parse(_numberOfRoomsController.text.trim()),
             address: _addressController.text.trim(),
@@ -281,6 +284,19 @@ class _RegisterPropertyDetailsScreenState
                               _selectedPropertyType = newType;
                             });
                           },
+                        ),
+                        _gap(context),
+                        NormalTextField(
+                          textEditingController: _propertyNameController,
+                          validatorFunction: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your property name';
+                            }
+
+                            return null;
+                          },
+                          labelText: 'Property Name',
+                          hintText: 'Enter your property name',
                         ),
                         _gap(context),
                         Row(

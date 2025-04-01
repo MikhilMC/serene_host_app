@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 // To parse this JSON data, do
 //
 //     final hostDataModel = hostDataModelFromJson(jsonString);
@@ -19,6 +18,7 @@ class HostDataModel {
   String? email;
   String? phoneNumber;
   String? password;
+  String? propertyName;
   String? propertyType;
   String? address;
   String? place;
@@ -42,6 +42,7 @@ class HostDataModel {
     this.email,
     this.phoneNumber,
     this.password,
+    this.propertyName,
     this.propertyType,
     this.address,
     this.place,
@@ -68,6 +69,7 @@ class HostDataModel {
         email: json["email"],
         phoneNumber: json["phone_number"],
         password: json["password"],
+        propertyName: json["property_name"],
         propertyType: json["property_type"],
         address: json["address"],
         place: json["place"],
@@ -94,6 +96,7 @@ class HostDataModel {
         "email": email,
         "phone_number": phoneNumber,
         "password": password,
+        "property_name": propertyName,
         "property_type": propertyType,
         "address": address,
         "place": place,

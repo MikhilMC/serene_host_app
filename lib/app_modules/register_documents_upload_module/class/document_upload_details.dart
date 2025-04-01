@@ -4,10 +4,10 @@ import 'dart:io';
 class DocumentUploadDetails {
   final File profilePicture;
   final File idProof;
-  final List<File> images;
+  final List<File> propertyImages;
   DocumentUploadDetails({
     required this.profilePicture,
     required this.idProof,
-    required this.images,
+    required this.propertyImages,
   });
 }
