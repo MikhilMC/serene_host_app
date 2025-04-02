@@ -15,6 +15,7 @@ class BookingDetailsModel {
   String userName;
   String userEmail;
   String userPhone;
+  String profilePicture;
   DateTime startDate;
   DateTime endDate;
   int noOfGuests;
@@ -26,7 +27,10 @@ class BookingDetailsModel {
   DateTime bookingDate;
   String platformFee;
   DateTime updatedDate;
-  List<dynamic> paymentIds;
+  List<int> paymentIds;
+  bool reviewSubmitted;
+  bool reportSubmitted;
+  bool hostReportSubmitted;
   int user;
   int host;
 
@@ -35,6 +39,7 @@ class BookingDetailsModel {
     required this.userName,
     required this.userEmail,
     required this.userPhone,
+    required this.profilePicture,
     required this.startDate,
     required this.endDate,
     required this.noOfGuests,
@@ -47,6 +52,9 @@ class BookingDetailsModel {
     required this.platformFee,
     required this.updatedDate,
     required this.paymentIds,
+    required this.reviewSubmitted,
+    required this.reportSubmitted,
+    required this.hostReportSubmitted,
     required this.user,
     required this.host,
   });
@@ -57,6 +65,7 @@ class BookingDetailsModel {
         userName: json["user_name"],
         userEmail: json["user_email"],
         userPhone: json["user_phone"],
+        profilePicture: json["profile_picture"],
         startDate: DateTime.parse(json["start_date"]),
         endDate: DateTime.parse(json["end_date"]),
         noOfGuests: json["no_of_guests"],
@@ -68,7 +77,10 @@ class BookingDetailsModel {
         bookingDate: DateTime.parse(json["booking_date"]),
         platformFee: json["platform_fee"],
         updatedDate: DateTime.parse(json["updated_date"]),
-        paymentIds: List<dynamic>.from(json["payment_ids"].map((x) => x)),
+        paymentIds: List<int>.from(json["payment_ids"].map((x) => x)),
+        reviewSubmitted: json["review_submitted"],
+        reportSubmitted: json["report_submitted"],
+        hostReportSubmitted: json["host_report_submitted"],
         user: json["user"],
         host: json["host"],
       );
@@ -78,6 +90,7 @@ class BookingDetailsModel {
         "user_name": userName,
         "user_email": userEmail,
         "user_phone": userPhone,
+        "profile_picture": profilePicture,
         "start_date":
             "${startDate.year.toString().padLeft(4, '0')}-${startDate.month.toString().padLeft(2, '0')}-${startDate.day.toString().padLeft(2, '0')}",
         "end_date":
@@ -92,6 +105,9 @@ class BookingDetailsModel {
         "platform_fee": platformFee,
         "updated_date": updatedDate.toIso8601String(),
         "payment_ids": List<dynamic>.from(paymentIds.map((x) => x)),
+        "review_submitted": reviewSubmitted,
+        "report_submitted": reportSubmitted,
+        "host_report_submitted": hostReportSubmitted,
         "user": user,
         "host": host,
       };

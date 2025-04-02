@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 
 import 'package:serene_host_app/app_constants/app_urls.dart';
-import 'package:serene_host_app/app_modules/booking_details_module/model/booking_details_model.dart';
+import 'package:serene_host_app/app_models/booking_details_model/booking_details_model.dart';
 
 Future<BookingDetailsModel> getBookingDetails({required int bookingId}) async {
   try {

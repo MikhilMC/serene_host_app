@@ -1,12 +1,11 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:serene_host_app/app_modules/booking_history_module/widget/status_badge.dart';
-
-import 'package:serene_host_app/app_modules/home_page_module/model/booking_history.dart';
+import 'package:serene_host_app/app_constants/app_urls.dart';
+import 'package:serene_host_app/app_modules/booking_history_module/model/host_booking_history_model.dart';
 
 class GuestInfo extends StatelessWidget {
-  final BookingHistory booking;
+  final HostBookingHistoryModel booking;
   const GuestInfo({
     super.key,
     required this.booking,
@@ -18,7 +17,7 @@ class GuestInfo extends StatelessWidget {
       children: [
         ClipOval(
           child: CachedNetworkImage(
-            imageUrl: booking.profilePicture,
+            imageUrl: "${AppUrls.baseUrl}${booking.profilePicture}",
             placeholder: (context, url) =>
                 const CircularProgressIndicator(strokeWidth: 2),
             errorWidget: (context, url, error) =>
@@ -34,24 +33,23 @@ class GuestInfo extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                booking.guestName,
+                booking.userName,
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
-                booking.guestEmail,
+                booking.email,
                 style: const TextStyle(fontSize: 14, color: Colors.grey),
               ),
               Text(
-                booking.guestPhone,
+                booking.phone,
                 style: const TextStyle(fontSize: 14, color: Colors.grey),
               ),
             ],
           ),
         ),
-        StatusBadge(status: booking.bookingStatus),
       ],
     );
   }

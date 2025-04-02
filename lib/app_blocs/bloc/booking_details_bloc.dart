@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:serene_host_app/app_modules/booking_details_module/model/booking_details_model.dart';
-import 'package:serene_host_app/app_modules/booking_details_module/service/get_booking_details.dart';
+import 'package:serene_host_app/app_models/booking_details_model/booking_details_model.dart';
+import 'package:serene_host_app/app_services/get_booking_details.dart';
 
 part 'booking_details_event.dart';
 part 'booking_details_state.dart';

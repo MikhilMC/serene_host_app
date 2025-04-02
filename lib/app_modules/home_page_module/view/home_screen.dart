@@ -25,9 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     _appBodies = [
-      CurrentBookingsWidget(
-        bookings: generateRandomBookings(15),
-      ),
+      CurrentBookingsWidget(),
       BookingReviewsWidget(
         bookingReviews: generateRandomReviews(15),
       ),
@@ -206,7 +204,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: AppColors.primaryColor,
               ),
               title: const Text(
-                'LogOut',
+                'Log Out',
                 style: TextStyle(
                   color: AppColors.primaryColor,
                   fontWeight: FontWeight.bold,

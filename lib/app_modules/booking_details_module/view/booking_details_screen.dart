@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
 import 'package:serene_host_app/app_constants/app_colors.dart';
-import 'package:serene_host_app/app_modules/booking_details_module/bloc/booking_details_bloc.dart';
+import 'package:serene_host_app/app_blocs/bloc/booking_details_bloc.dart';
 import 'package:serene_host_app/app_modules/booking_details_module/widget/details_row.dart';
 import 'package:serene_host_app/app_modules/booking_details_module/widget/section_card.dart';
 import 'package:serene_host_app/app_utils/app_helper.dart';

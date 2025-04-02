@@ -663,10 +663,10 @@ class __$$BookingDetailsSuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? hostBooking = freezed,
+    Object? hostBooking = null,
   }) {
     return _then(_$BookingDetailsSuccessImpl(
-      freezed == hostBooking
+      null == hostBooking
           ? _value.hostBooking
           : hostBooking // ignore: cast_nullable_to_non_nullable
               as BookingDetailsModel,
@@ -692,13 +692,12 @@ class _$BookingDetailsSuccessImpl implements BookingDetailsSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BookingDetailsSuccessImpl &&
-            const DeepCollectionEquality()
-                .equals(other.hostBooking, hostBooking));
+            (identical(other.hostBooking, hostBooking) ||
+                other.hostBooking == hostBooking));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(hostBooking));
+  int get hashCode => Object.hash(runtimeType, hostBooking);
 
   /// Create a copy of BookingDetailsState
   /// with the given fields replaced by the non-null parameter values.

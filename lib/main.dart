@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:serene_host_app/app_constants/app_colors.dart';
-import 'package:serene_host_app/app_modules/booking_details_module/bloc/booking_details_bloc.dart';
+import 'package:serene_host_app/app_blocs/bloc/booking_details_bloc.dart';
+import 'package:serene_host_app/app_modules/booking_history_module/bloc/booking_history_bloc.dart';
 import 'package:serene_host_app/app_modules/event_module/bloc/add_event_bloc/add_event_bloc.dart';
 import 'package:serene_host_app/app_modules/event_module/bloc/events_history_bloc/events_history_bloc.dart';
 import 'package:serene_host_app/app_modules/event_module/bloc/get_upcoming_events_bloc/get_upcoming_events_bloc.dart';
@@ -57,6 +58,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => BookingDetailsBloc(),
+        ),
+        BlocProvider(
+          create: (context) => BookingHistoryBloc(),
         ),
       ],
       child: MaterialApp(

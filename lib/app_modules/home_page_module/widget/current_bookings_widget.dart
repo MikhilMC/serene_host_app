@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:serene_host_app/app_constants/app_colors.dart';
 import 'package:serene_host_app/app_modules/home_page_module/bloc/host_bookings_bloc/host_bookings_bloc.dart';
-import 'package:serene_host_app/app_modules/home_page_module/model/booking.dart';
 import 'package:serene_host_app/app_modules/home_page_module/widget/booking_item.dart';
 import 'package:serene_host_app/app_widgets/custom_error_widget.dart';
 import 'package:serene_host_app/app_widgets/empty_list.dart';
 
 class CurrentBookingsWidget extends StatefulWidget {
-  final List<Booking> bookings;
-  const CurrentBookingsWidget({super.key, required this.bookings});
+  const CurrentBookingsWidget({
+    super.key,
+  });
 
   @override
   State<CurrentBookingsWidget> createState() => _CurrentBookingsWidgetState();

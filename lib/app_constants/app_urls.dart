@@ -6,7 +6,8 @@ class AppUrls {
   static const String hostUpdateUrl = "$hostUrl/update_host/";
   static const String hostLoginUrl = "$hostUrl/login/";
 
-  static const String getHostBookingsUrl = "$hostUrl/bookings_list/";
+  static const String getCurrentHostBookingsUrl = "$hostUrl/bookings_list/";
+  static const String getBookingHistoryUrl = "$hostUrl/booking_history/";
   static const String getProfileDataUrl = "$hostUrl/view_profile/";
 
   static const String addEventUrl = "$hostUrl/add_event/";

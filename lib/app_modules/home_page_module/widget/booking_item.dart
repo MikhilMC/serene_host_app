@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:serene_host_app/app_modules/booking_details_module/view/booking_details_screen.dart';
 
-import 'package:serene_host_app/app_models/host_booking_model/host_booking_model.dart';
+import 'package:serene_host_app/app_modules/home_page_module/model/host_booking_model/host_booking_model.dart';
 import 'package:serene_host_app/app_utils/app_helper.dart';
 
 class BookingItem extends StatelessWidget {

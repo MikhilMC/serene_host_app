@@ -1,15 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:serene_host_app/app_constants/app_colors.dart';
+import 'package:serene_host_app/app_modules/booking_history_module/bloc/booking_history_bloc.dart';
 import 'package:serene_host_app/app_modules/booking_history_module/widget/booking_card.dart';
 
 import 'package:serene_host_app/app_modules/home_page_module/model/booking_history.dart';
+import 'package:serene_host_app/app_widgets/custom_error_widget.dart';
+import 'package:serene_host_app/app_widgets/empty_list.dart';
 
-class BookingHistoryScreen extends StatelessWidget {
+class BookingHistoryScreen extends StatefulWidget {
   final List<BookingHistory> bookingHistory;
 
   const BookingHistoryScreen({
     super.key,
     required this.bookingHistory,
   });
+
+  @override
+  State<BookingHistoryScreen> createState() => _BookingHistoryScreenState();
+}
+
+class _BookingHistoryScreenState extends State<BookingHistoryScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context
+        .read<BookingHistoryBloc>()
+        .add(BookingHistoryEvent.bookingHistoryFetched());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,21 +56,40 @@ class BookingHistoryScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: bookingHistory.isEmpty
-          ? const Center(
-              child: Text(
-                "No bookings found",
-                style: TextStyle(fontSize: 18, color: Colors.grey),
+      body: BlocBuilder<BookingHistoryBloc, BookingHistoryState>(
+        builder: (context, state) {
+          if (state is BookingHistoryError) {
+            return CustomErrorWidget(
+              errorMessage: state.errorMessage,
+            );
+          }
+
+          if (state is BookingHistoryEmpty) {
+            return EmptyList(
+              message: "No booking history available.",
+            );
+          }
+
+          if (state is! BookingHistorySuccess) {
+            return Center(
+              child: CircularProgressIndicator(
+                color: AppColors.primaryColor,
               ),
-            )
-          : ListView.builder(
-              padding: const EdgeInsets.all(12),
-              itemCount: bookingHistory.length,
-              itemBuilder: (context, index) {
-                final booking = bookingHistory[index];
-                return BookingCard(booking: booking);
-              },
-            ),
+            );
+          }
+
+          final bookingHistory = state.bookingHistory;
+
+          return ListView.builder(
+            padding: const EdgeInsets.all(12),
+            itemCount: bookingHistory.length,
+            itemBuilder: (context, index) {
+              final booking = bookingHistory[index];
+              return BookingCard(booking: booking);
+            },
+          );
+        },
+      ),
     );
   }
 }
