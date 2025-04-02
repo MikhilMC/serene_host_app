@@ -1,7 +1,8 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:serene_host_app/app_modules/booking_history_module/model/host_booking_history_model.dart';
+import 'package:serene_host_app/app_modules/booking_history_module/widget/booking_detail_item.dart';
+import 'package:serene_host_app/app_modules/booking_history_module/widget/payment_status_widget.dart';
 
 class BookingDetails extends StatelessWidget {
   final HostBookingHistoryModel booking;
@@ -16,36 +17,62 @@ class BookingDetails extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          "Check-in: ${_formatDateTime(booking.startDate)}",
-          style: const TextStyle(fontSize: 14),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            BookingDetailItem(
+              label: "Check-in",
+              value: _formatDateTime(booking.startDate),
+            ),
+            BookingDetailItem(
+              label: "Check-out",
+              value: _formatDateTime(booking.endDate),
+            ),
+          ],
         ),
-        Text(
-          "Check-out: ${_formatDateTime(booking.endDate)}",
-          style: const TextStyle(fontSize: 14),
+        const SizedBox(height: 6),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            BookingDetailItem(
+              label: "Duration",
+              value: "$duration ${duration > 1 ? "nights" : "night"}",
+            ),
+            BookingDetailItem(
+              label: "Guests",
+              value: "${booking.noOfGuests}",
+            ),
+          ],
         ),
-        const SizedBox(height: 4),
-        Text(
-          "Stay Duration: $duration ${duration > 1 ? "nights" : "night"} • Guests: ${booking.noOfGuests}",
-          style: const TextStyle(fontSize: 14, color: Colors.grey),
+        const SizedBox(height: 6),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            BookingDetailItem(
+              label: "Total Price",
+              value: "₹${booking.totalCost}",
+              isBold: true,
+            ),
+            BookingDetailItem(
+              label: "Platform Fee",
+              value: "₹${booking.platformFee}",
+              color: Colors.green,
+            ),
+          ],
         ),
-        const SizedBox(height: 4),
-        Text(
-          "Total Price: ₹${booking.totalCost}",
-          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
-        ),
-        Text(
-          "Platform Fee: ₹${booking.platformFee}",
-          style: const TextStyle(fontSize: 14, color: Colors.green),
-        ),
-        Text(
-          "Refund Amount: ₹${booking.refundAmount}",
-          style: const TextStyle(fontSize: 14, color: Colors.red),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          "Payment Status: ${booking.paymentStatus} (${_formatPaymentMethod(booking.paymentMethod)})",
-          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            BookingDetailItem(
+              label: "Refund",
+              value: "₹${booking.refundAmount}",
+              color: Colors.red,
+            ),
+            PaymentStatusWidget(
+              paymentMethod: booking.paymentMethod,
+              paymentStatus: booking.paymentStatus,
+            ),
+          ],
         ),
       ],
     );
@@ -54,16 +81,5 @@ class BookingDetails extends StatelessWidget {
   /// ✅ **Date Formatting Helper**
   String _formatDateTime(DateTime date) {
     return DateFormat('dd MMM yyyy, hh:mm a').format(date);
-  }
-
-  String _formatPaymentMethod(String paymentMethod) {
-    switch (paymentMethod) {
-      case "cash_on_arrival":
-        return "Cash on Arrival";
-      case "upi":
-        return "UPI";
-      default:
-        return "Card";
-    }
   }
 }

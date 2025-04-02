@@ -1,6 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:serene_host_app/app_modules/home_page_module/model/booking_review.dart';
+import 'package:serene_host_app/app_constants/app_urls.dart';
+import 'package:serene_host_app/app_modules/home_page_module/model/booking_review_model/booking_review_model.dart';
 
 class BookingReviewCard extends StatelessWidget {
   const BookingReviewCard({
@@ -8,11 +9,10 @@ class BookingReviewCard extends StatelessWidget {
     required this.review,
   });
 
-  final BookingReview review;
+  final BookingReviewModel review;
 
   @override
   Widget build(BuildContext context) {
-    final dateFormat = DateFormat("MMM d");
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
@@ -27,10 +27,8 @@ class BookingReviewCard extends StatelessWidget {
             Row(
               children: [
                 CircleAvatar(
-                  backgroundColor: Colors.blueAccent,
-                  child: Text(
-                    review.userId.substring(0, 1).toUpperCase(),
-                    style: const TextStyle(color: Colors.white),
+                  backgroundImage: CachedNetworkImageProvider(
+                    "${AppUrls.baseUrl}${review.profilePicture}",
                   ),
                 ),
                 const SizedBox(width: 10),
@@ -39,55 +37,53 @@ class BookingReviewCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        review.reviewTitle,
+                        review.username,
                         style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Text(
-                        "Stay: ${dateFormat.format(review.checkInDate.toLocal())} - ${dateFormat.format(review.checkOutDate.toLocal())}",
-                        style: const TextStyle(color: Colors.grey),
-                      ),
                     ],
                   ),
                 ),
                 Row(
-                  children: List.generate(
-                    5,
-                    (i) => Icon(
-                      i < review.overallRating.floor()
-                          ? Icons.star
-                          : Icons.star_border,
-                      color: Colors.amber,
-                    ),
-                  ),
+                  children: List.generate(5, (i) {
+                    if (i < review.starRating.floor()) {
+                      return Icon(Icons.star, color: Colors.amber);
+                    } else if (i < review.starRating) {
+                      return Icon(Icons.star_half, color: Colors.amber);
+                    } else {
+                      return Icon(Icons.star_border, color: Colors.amber);
+                    }
+                  }),
                 ),
               ],
             ),
             const SizedBox(height: 8),
-            Text(
-              review.reviewDescription,
-              style: const TextStyle(fontSize: 14),
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
-            ),
-            if (review.uploadedPhotos != null &&
-                review.uploadedPhotos!.isNotEmpty)
+            if (review.feedback != null)
+              Text(
+                review.feedback!,
+                style: const TextStyle(fontSize: 14),
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
+              ),
+            if (review.images.isNotEmpty)
               Padding(
                 padding: const EdgeInsets.only(top: 10),
                 child: SizedBox(
                   height: 80,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    itemCount: review.uploadedPhotos!.length,
+                    itemCount: review.images.length,
                     itemBuilder: (context, photoIndex) {
+                      final imageItem = review.images[photoIndex];
+                      final imageUrl = imageItem.image;
                       return Padding(
                         padding: const EdgeInsets.only(right: 8),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10),
-                          child: Image.network(
-                            review.uploadedPhotos![photoIndex],
+                          child: CachedNetworkImage(
+                            imageUrl: "${AppUrls.baseUrl}/$imageUrl",
                             height: 80,
                             width: 80,
                             fit: BoxFit.cover,

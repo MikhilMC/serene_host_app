@@ -6,6 +6,7 @@ import 'package:serene_host_app/app_modules/booking_history_module/bloc/booking_
 import 'package:serene_host_app/app_modules/event_module/bloc/add_event_bloc/add_event_bloc.dart';
 import 'package:serene_host_app/app_modules/event_module/bloc/events_history_bloc/events_history_bloc.dart';
 import 'package:serene_host_app/app_modules/event_module/bloc/get_upcoming_events_bloc/get_upcoming_events_bloc.dart';
+import 'package:serene_host_app/app_modules/home_page_module/bloc/booking_reviews_bloc/booking_reviews_bloc.dart';
 import 'package:serene_host_app/app_modules/home_page_module/bloc/host_bookings_bloc/host_bookings_bloc.dart';
 import 'package:serene_host_app/app_modules/home_page_module/bloc/profile_data_bloc/profile_data_bloc.dart';
 import 'package:serene_host_app/app_modules/introduction_screen_module/view/introduction_screen.dart';
@@ -61,6 +62,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => BookingHistoryBloc(),
+        ),
+        BlocProvider(
+          create: (context) => BookingReviewsBloc(),
         ),
       ],
       child: MaterialApp(

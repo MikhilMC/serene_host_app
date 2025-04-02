@@ -26,9 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     _appBodies = [
       CurrentBookingsWidget(),
-      BookingReviewsWidget(
-        bookingReviews: generateRandomReviews(15),
-      ),
+      BookingReviewsWidget(),
       ProfileWidget(),
     ];
     super.initState();
