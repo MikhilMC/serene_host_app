@@ -300,8 +300,10 @@ class _BookingHistoryDetailsScreenState
                           // Report User Button
                           if (!bookingDetails.hostReportSubmitted)
                             ElevatedButton.icon(
-                              icon:
-                                  const Icon(Icons.report, color: Colors.white),
+                              icon: const Icon(
+                                Icons.report,
+                                color: Colors.white,
+                              ),
                               label: const Text(
                                 "Report User",
                                 style: TextStyle(color: Colors.white),
@@ -309,7 +311,9 @@ class _BookingHistoryDetailsScreenState
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.red,
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 24, vertical: 12),
+                                  horizontal: 24,
+                                  vertical: 12,
+                                ),
                               ),
                               onPressed: () {
                                 Navigator.push(
