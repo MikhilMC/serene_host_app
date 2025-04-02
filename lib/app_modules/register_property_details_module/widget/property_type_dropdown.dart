@@ -4,13 +4,13 @@ class PropertyTypeDropdown extends StatelessWidget {
   final String? selectedPropertyType;
   final Function(String?) onTypeSelected;
 
-  PropertyTypeDropdown({
+  const PropertyTypeDropdown({
     required this.selectedPropertyType,
     required this.onTypeSelected,
     super.key,
   });
 
-  final List<String> propertyTypes = [
+  static const List<String> _propertyTypes = [
     'Apartment',
     'House',
     'Villa',
@@ -38,7 +38,7 @@ class PropertyTypeDropdown extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
         ),
       ),
-      items: propertyTypes.map((String type) {
+      items: _propertyTypes.map((String type) {
         return DropdownMenuItem<String>(
           value: type,
           child: Text(type),

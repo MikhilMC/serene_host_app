@@ -298,27 +298,30 @@ class _BookingHistoryDetailsScreenState
                           // ),
 
                           // Report User Button
-                          ElevatedButton.icon(
-                            icon: const Icon(Icons.report, color: Colors.white),
-                            label: const Text(
-                              "Report User",
-                              style: TextStyle(color: Colors.white),
+                          if (!bookingDetails.hostReportSubmitted)
+                            ElevatedButton.icon(
+                              icon:
+                                  const Icon(Icons.report, color: Colors.white),
+                              label: const Text(
+                                "Report User",
+                                style: TextStyle(color: Colors.white),
+                              ),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.red,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 24, vertical: 12),
+                              ),
+                              onPressed: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ReportUserScreen(
+                                      bookingId: widget.bookingId,
+                                    ),
+                                  ),
+                                );
+                              },
                             ),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.red,
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 24, vertical: 12),
-                            ),
-                            onPressed: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      ReportUserScreen(bookingId: 1),
-                                ),
-                              );
-                            },
-                          ),
                         ],
                       ),
                     ),

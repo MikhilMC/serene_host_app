@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AmenitiesSelection extends StatelessWidget {
-  final List<String> amenities = [
+  static const List<String> amenities = [
     "WiFi",
     "Parking",
     "Air Conditioning",
@@ -15,7 +15,7 @@ class AmenitiesSelection extends StatelessWidget {
   final List<String> selectedAmenities;
   final Function(String) onAmenityToggle;
 
-  AmenitiesSelection({
+  const AmenitiesSelection({
     super.key,
     required this.selectedAmenities,
     required this.onAmenityToggle,
