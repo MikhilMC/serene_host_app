@@ -5,10 +5,11 @@ import 'package:http/http.dart' as http;
 
 import 'package:serene_host_app/app_constants/app_urls.dart';
 import 'package:serene_host_app/app_modules/booking_history_module/model/host_booking_history_model.dart';
+import 'package:serene_host_app/app_utils/app_localstorage.dart';
 
 Future<List<HostBookingHistoryModel>> getBookingHistory() async {
   try {
-    int userId = 38;
+    int userId = await AppLocalstorage.getUserId();
     Map<String, dynamic> params = {
       "id": userId.toString(),
     };

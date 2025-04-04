@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:serene_host_app/app_constants/app_colors.dart';
 import 'package:serene_host_app/app_modules/booking_history_module/view/booking_history_screen.dart';
 import 'package:serene_host_app/app_modules/event_module/view/event_screen.dart';
+import 'package:serene_host_app/app_modules/home_page_module/bloc/username_bloc/username_bloc.dart';
 import 'package:serene_host_app/app_modules/home_page_module/widget/booking_reviews_widget.dart';
 import 'package:serene_host_app/app_modules/home_page_module/widget/current_bookings_widget.dart';
 import 'package:serene_host_app/app_modules/home_page_module/widget/profile_widget.dart';
 import 'package:serene_host_app/app_modules/login_module/view/login_screen.dart';
-import 'package:serene_host_app/app_utils/random_generator_functions.dart';
+import 'package:serene_host_app/app_utils/app_localstorage.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -29,7 +31,21 @@ class _HomeScreenState extends State<HomeScreen> {
       BookingReviewsWidget(),
       ProfileWidget(),
     ];
+    context.read<UsernameBloc>().add(UsernameEvent.usernameRetreived());
     super.initState();
+  }
+
+  Future<void> _logout() async {
+    await AppLocalstorage.userLogout();
+    if (mounted) {
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (context) => LoginScreen(),
+        ),
+        (route) => false,
+      );
+    }
   }
 
   @override
@@ -54,13 +70,39 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            Text(
-              "Hello, John",
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 35,
-                fontWeight: FontWeight.bold,
-              ),
+            BlocBuilder<UsernameBloc, UsernameState>(
+              builder: (context, state) {
+                if (state is UsernameError) {
+                  return Text(
+                    "Error: ${state.errorMessage}",
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  );
+                }
+
+                if (state is! UsernameSuccess) {
+                  return Text(
+                    "Loading...",
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  );
+                }
+
+                return Text(
+                  "Hello, ${state.username}",
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                );
+              },
             )
           ],
         ),
@@ -168,9 +210,7 @@ class _HomeScreenState extends State<HomeScreen> {
               onTap: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(
-                    builder: (context) => BookingHistoryScreen(
-                      bookingHistory: generateRandomBookingHistory(15),
-                    ),
+                    builder: (context) => BookingHistoryScreen(),
                   ),
                 );
               },
@@ -202,21 +242,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 color: AppColors.primaryColor,
               ),
               title: const Text(
-                'Log Out',
+                'Log out',
                 style: TextStyle(
                   color: AppColors.primaryColor,
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                 ),
               ),
-              onTap: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => LoginScreen(),
-                  ),
-                );
-              },
+              onTap: _logout,
             ),
           ],
         ),

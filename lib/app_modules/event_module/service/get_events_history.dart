@@ -5,10 +5,11 @@ import 'package:http/http.dart' as http;
 
 import 'package:serene_host_app/app_constants/app_urls.dart';
 import 'package:serene_host_app/app_modules/event_module/model/event_model/event_model.dart';
+import 'package:serene_host_app/app_utils/app_localstorage.dart';
 
 Future<List<EventModel>> getEventsHistory() async {
   try {
-    int userId = 31;
+    int userId = await AppLocalstorage.getUserId();
     Map<String, dynamic> params = {
       "host_id": userId.toString(),
     };

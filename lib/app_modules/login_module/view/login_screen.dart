@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:serene_host_app/app_constants/app_colors.dart';
 import 'package:serene_host_app/app_modules/home_page_module/view/home_screen.dart';
@@ -8,10 +9,12 @@ import 'package:serene_host_app/app_modules/register_personal_information_module
 import 'package:serene_host_app/app_modules/register_property_details_module/view/register_property_details_screen.dart';
 import 'package:serene_host_app/app_modules/register_submit_module/view/register_submit_screen.dart';
 import 'package:serene_host_app/app_utils/app_helper.dart';
+import 'package:serene_host_app/app_utils/app_localstorage.dart';
 import 'package:serene_host_app/app_widgets/form_logo.dart';
 import 'package:serene_host_app/app_widgets/normal_text_field.dart';
 import 'package:serene_host_app/app_widgets/overlay_loader_widget.dart';
 import 'package:serene_host_app/app_widgets/password_text_field.dart';
+import 'package:serene_host_app/main.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -61,76 +64,97 @@ class _LoginScreenState extends State<LoginScreen> {
         listener: (context, state) {
           state.whenOrNull(
             loading: () {},
-            success: (response) {
+            success: (response) async {
               if (response.message == "Login successful!") {
                 switch (response.status) {
                   case "personal_details_entered":
-                    AppHelper.showCustomSnackBar(
-                      context,
-                      "Please enter property details.",
-                    );
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => RegisterPropertyDetailsScreen(
-                          newHostId: response.id,
-                        ),
-                      ),
-                    );
-                    break;
-                  case "property_details_entering":
-                    AppHelper.showCustomSnackBar(
-                      context,
-                      "Please upload necessory documents.",
-                    );
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => RegisterDocumentsUploadScreen(
-                          newHostId: response.id,
-                        ),
-                      ),
-                    );
-                    break;
-                  case "file_uploaded":
-                    AppHelper.showCustomSnackBar(
-                      context,
-                      "Please enter rate and complete registration",
-                    );
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => RegisterSubmitScreen(
-                          newHostId: response.id,
-                        ),
-                      ),
-                    );
-                    break;
-                  case "pending":
-                    AppHelper.showErrorDialogue(
-                      context,
-                      "Your account still haven't been approved. Please try again later, or contact admin.",
-                    );
-                    break;
-                  default:
-                    AppHelper.showCustomSnackBar(
-                      context,
-                      "Host Login Successful.",
+                    SchedulerBinding.instance.addPostFrameCallback(
+                      (_) {
+                        AppHelper.showCustomSnackBar(
+                          context,
+                          "Please enter property details.",
+                        );
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => RegisterPropertyDetailsScreen(
+                              newHostId: response.id,
+                            ),
+                          ),
+                        );
+                      },
                     );
 
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => HomeScreen(),
-                      ),
+                    break;
+                  case "property_details_entering":
+                    SchedulerBinding.instance.addPostFrameCallback((_) {
+                      AppHelper.showCustomSnackBar(
+                        context,
+                        "Please upload necessory documents.",
+                      );
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => RegisterDocumentsUploadScreen(
+                            newHostId: response.id,
+                          ),
+                        ),
+                      );
+                    });
+                    break;
+                  case "file_uploaded":
+                    SchedulerBinding.instance.addPostFrameCallback((_) {
+                      AppHelper.showCustomSnackBar(
+                        context,
+                        "Please enter rate and complete registration",
+                      );
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => RegisterSubmitScreen(
+                            newHostId: response.id,
+                          ),
+                        ),
+                      );
+                    });
+
+                    break;
+                  case "pending":
+                    SchedulerBinding.instance.addPostFrameCallback((_) {
+                      AppHelper.showErrorDialogue(
+                        context,
+                        "Your account still haven't been approved. Please try again later, or contact admin.",
+                      );
+                    });
+                    break;
+                  default:
+                    await AppLocalstorage.userLogin(
+                      username: response.name,
+                      userId: response.id,
                     );
+
+                    SchedulerBinding.instance.addPostFrameCallback((_) {
+                      MyApp.navigatorKey.currentState?.pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => HomeScreen(),
+                        ),
+                      );
+
+                      AppHelper.showCustomSnackBar(
+                        context,
+                        "Host Login Successful.",
+                      );
+                    });
+
                     break;
                 }
               } else {
-                AppHelper.showErrorDialogue(
-                  context,
-                  "Host Login Failed.",
-                );
+                SchedulerBinding.instance.addPostFrameCallback((_) {
+                  AppHelper.showErrorDialogue(
+                    context,
+                    "Host Login Failed.",
+                  );
+                });
               }
             },
             failure: (errorMessage) => AppHelper.showErrorDialogue(

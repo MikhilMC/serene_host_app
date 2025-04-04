@@ -4,16 +4,12 @@ import 'package:serene_host_app/app_constants/app_colors.dart';
 import 'package:serene_host_app/app_modules/booking_history_module/bloc/booking_history_bloc.dart';
 import 'package:serene_host_app/app_modules/booking_history_module/widget/booking_card.dart';
 
-import 'package:serene_host_app/app_modules/home_page_module/model/booking_history.dart';
 import 'package:serene_host_app/app_widgets/custom_error_widget.dart';
 import 'package:serene_host_app/app_widgets/empty_list.dart';
 
 class BookingHistoryScreen extends StatefulWidget {
-  final List<BookingHistory> bookingHistory;
-
   const BookingHistoryScreen({
     super.key,
-    required this.bookingHistory,
   });
 
   @override
