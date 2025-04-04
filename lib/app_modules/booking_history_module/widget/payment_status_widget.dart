@@ -34,8 +34,6 @@ class PaymentStatusWidget extends StatelessWidget {
 
   String _formatPaymentMethod(String paymentMethod) {
     switch (paymentMethod) {
-      case "cash_on_arrival":
-        return "Cash on Arrival";
       case "upi":
         return "UPI";
       default:
