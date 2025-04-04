@@ -12,6 +12,7 @@ import 'package:serene_host_app/app_modules/event_module/bloc/get_upcoming_event
 import 'package:serene_host_app/app_modules/home_page_module/bloc/booking_reviews_bloc/booking_reviews_bloc.dart';
 import 'package:serene_host_app/app_modules/home_page_module/bloc/host_bookings_bloc/host_bookings_bloc.dart';
 import 'package:serene_host_app/app_modules/home_page_module/bloc/profile_data_bloc/profile_data_bloc.dart';
+import 'package:serene_host_app/app_modules/home_page_module/bloc/total_earnings_bloc/total_earnings_bloc.dart';
 import 'package:serene_host_app/app_modules/home_page_module/bloc/username_bloc/username_bloc.dart';
 import 'package:serene_host_app/app_modules/home_page_module/view/home_screen.dart';
 import 'package:serene_host_app/app_modules/introduction_screen_module/view/introduction_screen.dart';
@@ -107,7 +108,10 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => UsernameBloc(),
-        )
+        ),
+        BlocProvider(
+          create: (context) => TotalEarningsBloc(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
