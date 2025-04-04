@@ -16,6 +16,7 @@ class AppUrls {
   static const String getEventsHistoryUrl = "$hostUrl/event_history/";
 
   static const String getBookingDetailsUrl = "$hostUrl/booking_details/";
+  static const String getUserReviewsUrl = "$hostUrl/get_review/";
 
   static const String reportUserUrl = "$hostUrl/report_user/";
 }

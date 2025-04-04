@@ -9,6 +9,7 @@ import 'package:serene_host_app/app_constants/app_colors.dart';
 import 'package:serene_host_app/app_constants/app_urls.dart';
 import 'package:serene_host_app/app_modules/booking_history_details_module/widget/history_details_row.dart';
 import 'package:serene_host_app/app_modules/booking_history_details_module/widget/history_section_card.dart';
+import 'package:serene_host_app/app_modules/booking_history_details_module/widget/review_section.dart';
 import 'package:serene_host_app/app_modules/report_user_module/view/report_user_screen.dart';
 import 'package:serene_host_app/app_widgets/custom_error_widget.dart';
 
@@ -209,37 +210,8 @@ class _BookingHistoryDetailsScreenState
                 const SizedBox(height: 12),
 
                 // Review Section (if available)
-                // if (widget.booking.bookingStatus == "Completed" &&
-                //     widget.booking.reviewTitle != null)
-                //   HistorySectionCard(
-                //     title: "Guest Review",
-                //     child: Column(
-                //       crossAxisAlignment: CrossAxisAlignment.start,
-                //       children: [
-                //         Text(
-                //           widget.booking.reviewTitle!,
-                //           style: const TextStyle(
-                //             fontSize: 16,
-                //             fontWeight: FontWeight.bold,
-                //           ),
-                //         ),
-                //         const SizedBox(height: 6),
-                //         Row(
-                //           children: List.generate(
-                //             widget.booking.reviewRating ?? 0,
-                //             (index) => const Icon(
-                //               Icons.star,
-                //               color: Colors.amber,
-                //               size: 20,
-                //             ),
-                //           ),
-                //         ),
-                //         const SizedBox(height: 6),
-                //         Text(widget.booking.reviewDescription!),
-                //       ],
-                //     ),
-                //   ),
-                // const SizedBox(height: 16),
+                ReviewSection(bookingId: widget.bookingId),
+                const SizedBox(height: 16),
 
                 // Action Buttons with a cleaner layout
                 SizedBox(
@@ -275,27 +247,6 @@ class _BookingHistoryDetailsScreenState
                               );
                             },
                           ),
-
-                          // // Download Invoice Button
-                          // ElevatedButton.icon(
-                          //   icon: const Icon(Icons.file_download,
-                          //       color: Colors.white),
-                          //   label: const Text(
-                          //     "Download Invoice",
-                          //     style: TextStyle(color: Colors.white),
-                          //   ),
-                          //   style: ElevatedButton.styleFrom(
-                          //     backgroundColor: Colors.green,
-                          //     padding: const EdgeInsets.symmetric(
-                          //         horizontal: 24, vertical: 12),
-                          //   ),
-                          //   onPressed: () {
-                          //     ScaffoldMessenger.of(context).showSnackBar(
-                          //       const SnackBar(
-                          //           content: Text("Invoice Downloaded")),
-                          //     );
-                          //   },
-                          // ),
 
                           // Report User Button
                           if (!bookingDetails.hostReportSubmitted)

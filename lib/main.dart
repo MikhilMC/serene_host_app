@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:serene_host_app/app_constants/app_colors.dart';
 import 'package:serene_host_app/app_blocs/bloc/booking_details_bloc.dart';
+import 'package:serene_host_app/app_modules/booking_history_details_module/bloc/user_review_bloc.dart';
 import 'package:serene_host_app/app_modules/booking_history_module/bloc/booking_history_bloc.dart';
 import 'package:serene_host_app/app_modules/event_module/bloc/add_event_bloc/add_event_bloc.dart';
 import 'package:serene_host_app/app_modules/event_module/bloc/events_history_bloc/events_history_bloc.dart';
@@ -69,6 +70,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => ReportUserBloc(),
+        ),
+        BlocProvider(
+          create: (context) => UserReviewBloc(),
         ),
       ],
       child: MaterialApp(
