@@ -13,7 +13,6 @@ class ReasonsDropdown extends StatelessWidget {
   static const List<String> _reasons = [
     'Harassment',
     'Property Damage',
-    'Non-Payment',
     'Rule Violation',
     'Other'
   ];
